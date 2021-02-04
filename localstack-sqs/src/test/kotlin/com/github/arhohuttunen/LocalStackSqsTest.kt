@@ -9,14 +9,14 @@ import software.amazon.awssdk.services.sqs.SqsClient
 @LocalStackSqs(queueNames = ["Queue"])
 class LocalStackSqsTest {
     @Test
-    fun `queues are created`(@AwsClient sqsClient: SqsClient) {
+    fun `queues are created from class annotations`(@AwsClient sqsClient: SqsClient) {
         val listQueuesResponse = sqsClient.listQueues()
         assertThat(listQueuesResponse.queueUrls()).isNotEmpty()
     }
 
     @Test
     @LocalStackSqs(queueNames = ["AnotherQueue"])
-    fun `queues are created from methods`(@AwsClient sqsClient: SqsClient) {
+    fun `queues are created from method annotations`(@AwsClient sqsClient: SqsClient) {
         val listQueuesResponse = sqsClient.listQueues()
         assertThat(listQueuesResponse.queueUrls()).hasSize(2)
     }
