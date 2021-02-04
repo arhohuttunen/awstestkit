@@ -9,14 +9,14 @@ import software.amazon.awssdk.services.sns.SnsClient
 @LocalStackSns(topicNames = ["Topic"])
 class LocalStackSnsTest {
     @Test
-    fun `topics are created`(@AwsClient snsClient: SnsClient) {
+    fun `topics are created from class annotations`(@AwsClient snsClient: SnsClient) {
         val listTopicsResponse = snsClient.listTopics()
         assertThat(listTopicsResponse.topics()).isNotEmpty()
     }
 
     @Test
     @LocalStackSns(topicNames = ["AnotherTopic"])
-    fun `topics are created from methods`(@AwsClient snsClient: SnsClient) {
+    fun `topics are created from method annotations`(@AwsClient snsClient: SnsClient) {
         val listTopicsResponse = snsClient.listTopics()
         assertThat(listTopicsResponse.topics()).hasSize(2)
     }
