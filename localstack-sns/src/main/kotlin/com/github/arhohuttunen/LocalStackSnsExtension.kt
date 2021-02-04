@@ -14,10 +14,10 @@ import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
 class LocalStackSnsExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
-    private lateinit var snsClient: SnsClient
+    private lateinit var snsClient: SimpleSnsClient
 
     override fun beforeAll(context: ExtensionContext) {
-        snsClient = SnsClientParameterResolver().createClient(SnsClient::class, context) as SnsClient
+        snsClient = SimpleSnsClient(SnsClientParameterResolver().createClient(SnsClient::class, context) as SnsClient)
 
         createResources(context.requiredTestClass)
     }
@@ -38,7 +38,7 @@ class LocalStackSnsExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
             annotation.get().topicNames.forEach {
-                createTopic(it)
+                snsClient.createTopic(it)
             }
         }
     }
@@ -47,23 +47,9 @@ class LocalStackSnsExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
             annotation.get().topicNames.forEach {
-                deleteTopic(it)
+                snsClient.deleteTopic(it)
             }
         }
-    }
-
-    private fun createTopic(topicName: String): CreateTopicResponse {
-        val request = CreateTopicRequest.builder()
-            .name(topicName)
-            .build()
-        return snsClient.createTopic(request)
-    }
-
-    private fun deleteTopic(topicName: String) {
-        val request = DeleteTopicRequest.builder()
-            .topicArn(createTopic(topicName).topicArn())
-            .build()
-        snsClient.deleteTopic(request)
     }
 
     private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<LocalStackSns> {
