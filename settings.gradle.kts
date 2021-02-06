@@ -1,4 +1,4 @@
-rootProject.name = "awsclient-junit5"
+rootProject.name = "awstest"
 
 include("core")
 include("localstack")
