@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 
-@LocalStackTest(services = [LocalStackContainer.Service.DYNAMODB])
+@LocalStackTest(LocalStackContainer.Service.DYNAMODB)
 @LocalStackDynamoDb(tables = [DynamoDbTable("test-table", [DynamoDbTableKey("id")])])
 class LocalStackDynamoDbTest {
     @Test

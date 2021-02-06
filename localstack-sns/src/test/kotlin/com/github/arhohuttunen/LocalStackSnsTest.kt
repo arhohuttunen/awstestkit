@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.sns.SnsClient
 
-@LocalStackTest(services = [LocalStackContainer.Service.SNS])
+@LocalStackTest(LocalStackContainer.Service.SNS)
 @LocalStackSns(topicNames = ["Topic"])
 class LocalStackSnsTest {
     @Test

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 
-@LocalStackTest(services = [LocalStackContainer.Service.SECRETSMANAGER])
+@LocalStackTest(LocalStackContainer.Service.SECRETSMANAGER)
 @LocalStackSecretsManager(secrets = [Secret(name = "SecretName", value = "SecretValue")])
 class LocalStackSecretsManagerTest {
     @Test
