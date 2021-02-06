@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.sqs.SqsClient
+import software.amazon.awssdk.services.sqs.SqsClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -14,7 +15,8 @@ class LocalStackSqsExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
     private lateinit var sqsClient: SimpleSqsClient
 
     override fun beforeAll(context: ExtensionContext) {
-        sqsClient = SimpleSqsClient(SqsClientParameterResolver().createClient(SqsClient::class, context) as SqsClient)
+        val factory = AwsClientFactory<SqsClientBuilder, SqsClient>(SqsClient.builder())
+        sqsClient = SimpleSqsClient(factory.create(context) as SqsClient)
 
         createResources(context.requiredTestClass)
     }

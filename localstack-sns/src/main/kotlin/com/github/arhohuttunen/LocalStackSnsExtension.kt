@@ -7,9 +7,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.sns.SnsClient
-import software.amazon.awssdk.services.sns.model.CreateTopicRequest
-import software.amazon.awssdk.services.sns.model.CreateTopicResponse
-import software.amazon.awssdk.services.sns.model.DeleteTopicRequest
+import software.amazon.awssdk.services.sns.SnsClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,8 @@ class LocalStackSnsExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
     private lateinit var snsClient: SimpleSnsClient
 
     override fun beforeAll(context: ExtensionContext) {
-        snsClient = SimpleSnsClient(SnsClientParameterResolver().createClient(SnsClient::class, context) as SnsClient)
+        val factory = AwsClientFactory<SnsClientBuilder, SnsClient>(SnsClient.builder())
+        snsClient = SimpleSnsClient(factory.create(context) as SnsClient)
 
         createResources(context.requiredTestClass)
     }
