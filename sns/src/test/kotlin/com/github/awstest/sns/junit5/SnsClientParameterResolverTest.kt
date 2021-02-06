@@ -1,7 +1,6 @@
 package com.github.awstest.sns.junit5
 
 import com.github.awstest.AwsClient
-import com.github.awstest.sns.junit5.SnsClientParameterResolver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

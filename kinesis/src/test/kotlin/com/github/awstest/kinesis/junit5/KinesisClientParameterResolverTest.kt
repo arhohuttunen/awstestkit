@@ -1,7 +1,6 @@
 package com.github.awstest.kinesis.junit5
 
 import com.github.awstest.AwsClient
-import com.github.awstest.kinesis.junit5.KinesisClientParameterResolver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
