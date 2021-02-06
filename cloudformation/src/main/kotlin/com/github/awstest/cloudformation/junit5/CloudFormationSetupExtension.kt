@@ -18,7 +18,7 @@ class CloudFormationSetupExtension : BeforeAllCallback, AfterAllCallback, Before
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<CloudFormationClientBuilder, CloudFormationClient>(CloudFormationClient.builder())
-        cloudFormationClient = SimpleCloudFormationClient(factory.create(context) as CloudFormationClient)
+        cloudFormationClient = SimpleCloudFormationClient(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

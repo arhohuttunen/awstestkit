@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClientBuilde
 import kotlin.reflect.KClass
 
 class SecretsManagerClientParameterResolver : SdkClientParameterResolver() {
-    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, *>>
+    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>>
 
     init {
         factories = mapOf(

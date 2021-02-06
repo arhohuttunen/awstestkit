@@ -18,7 +18,7 @@ class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<SqsClientBuilder, SqsClient>(SqsClient.builder())
-        sqsClient = SimpleSqsClient(factory.create(context) as SqsClient)
+        sqsClient = SimpleSqsClient(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

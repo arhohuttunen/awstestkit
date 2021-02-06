@@ -13,7 +13,7 @@ import kotlin.reflect.full.createInstance
 class AwsClientFactory<T : AwsClientBuilder<T, U>, U : SdkClient>(
     private val awsClientBuilder: AwsClientBuilder<T, U>
 ) {
-    fun create(extensionContext: ExtensionContext): SdkClient {
+    fun create(extensionContext: ExtensionContext): U {
         val endpoint = resolveEndpoint(extensionContext)
 
         return awsClientBuilder

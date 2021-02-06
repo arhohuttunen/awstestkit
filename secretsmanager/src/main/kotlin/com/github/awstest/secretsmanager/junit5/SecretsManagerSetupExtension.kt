@@ -18,7 +18,7 @@ class SecretsManagerSetupExtension : BeforeAllCallback, AfterAllCallback, Before
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<SecretsManagerClientBuilder, SecretsManagerClient>(SecretsManagerClient.builder())
-        secretsManagerClient = SimpleSecretsManagerClient(factory.create(context) as SecretsManagerClient)
+        secretsManagerClient = SimpleSecretsManagerClient(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

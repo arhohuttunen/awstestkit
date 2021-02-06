@@ -18,7 +18,7 @@ class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<DynamoDbClientBuilder, DynamoDbClient>(DynamoDbClient.builder())
-        dynamoDbClient = SimpleDynamoDbClient(factory.create(context) as DynamoDbClient)
+        dynamoDbClient = SimpleDynamoDbClient(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

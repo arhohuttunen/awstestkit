@@ -18,7 +18,7 @@ class S3SetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<S3ClientBuilder, S3Client>(S3Client.builder())
-        s3Client = SimpleS3Client(factory.create(context) as S3Client)
+        s3Client = SimpleS3Client(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

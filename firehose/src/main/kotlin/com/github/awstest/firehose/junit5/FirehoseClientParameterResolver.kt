@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.firehose.FirehoseClientBuilder
 import kotlin.reflect.KClass
 
 class FirehoseClientParameterResolver : SdkClientParameterResolver() {
-    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, *>>
+    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>>
 
     init {
         factories = mapOf(

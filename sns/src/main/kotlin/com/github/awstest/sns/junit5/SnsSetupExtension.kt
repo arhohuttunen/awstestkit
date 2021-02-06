@@ -18,7 +18,7 @@ class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
 
     override fun beforeAll(context: ExtensionContext) {
         val factory = AwsClientFactory<SnsClientBuilder, SnsClient>(SnsClient.builder())
-        snsClient = SimpleSnsClient(factory.create(context) as SnsClient)
+        snsClient = SimpleSnsClient(factory.create(context))
 
         createResources(context.requiredTestClass)
     }

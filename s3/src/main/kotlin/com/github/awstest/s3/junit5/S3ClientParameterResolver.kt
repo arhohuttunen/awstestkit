@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.s3.S3ClientBuilder
 import kotlin.reflect.KClass
 
 class S3ClientParameterResolver : SdkClientParameterResolver() {
-    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, *>>
+    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>>
 
     init {
         factories = mapOf(

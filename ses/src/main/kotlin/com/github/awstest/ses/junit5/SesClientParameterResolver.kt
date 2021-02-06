@@ -10,7 +10,7 @@ import software.amazon.awssdk.services.ses.SesClientBuilder
 import kotlin.reflect.KClass
 
 class SesClientParameterResolver : SdkClientParameterResolver() {
-    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, *>>
+    override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>>
 
     init {
         factories = mapOf(

@@ -8,7 +8,7 @@ import java.util.Optional
 import kotlin.reflect.KClass
 
 abstract class SdkClientParameterResolver : ParameterResolver {
-    protected abstract val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, *>>
+    protected abstract val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>>
 
     override fun supportsParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Boolean {
         val annotation: Optional<AwsClient> = parameterContext.findAnnotation(AwsClient::class.java)
