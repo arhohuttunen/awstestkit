@@ -4,3 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "com.amazonaws:*"
+      - dependency-name: "software.amazon.awssdk:*"
