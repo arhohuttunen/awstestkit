@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.Extensions
 
 @Target(AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Stack(val stackName: String, val templateFile: String)
+annotation class CfnStack(val stackName: String, val templateFile: String)
 
 @Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
@@ -13,4 +13,4 @@ annotation class Stack(val stackName: String, val templateFile: String)
     ExtendWith(CloudFormationSetupExtension::class),
     ExtendWith(CloudFormationClientParameterResolver::class)
 )
-annotation class CloudFormationSetup(vararg val stacks: Stack)
+annotation class CloudFormationSetup(vararg val stacks: CfnStack)
