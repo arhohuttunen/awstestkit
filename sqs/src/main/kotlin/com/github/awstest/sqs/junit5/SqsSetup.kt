@@ -1,4 +1,4 @@
-package com.github.awstest.junit5
+package com.github.awstest.sqs.junit5
 
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.Extensions

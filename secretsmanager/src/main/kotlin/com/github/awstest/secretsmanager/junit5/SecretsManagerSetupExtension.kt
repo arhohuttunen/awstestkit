@@ -1,24 +1,24 @@
-package com.github.awstest.junit5
+package com.github.awstest.secretsmanager.junit5
 
 import com.github.awstest.AwsClientFactory
-import com.github.awstest.SimpleSnsClient
+import com.github.awstest.secretsmanager.SimpleSecretsManagerClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
-import software.amazon.awssdk.services.sns.SnsClient
-import software.amazon.awssdk.services.sns.SnsClientBuilder
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
-class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
-    private lateinit var snsClient: SimpleSnsClient
+class SecretsManagerSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
+    private lateinit var secretsManagerClient: SimpleSecretsManagerClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<SnsClientBuilder, SnsClient>(SnsClient.builder())
-        snsClient = SimpleSnsClient(factory.create(context) as SnsClient)
+        val factory = AwsClientFactory<SecretsManagerClientBuilder, SecretsManagerClient>(SecretsManagerClient.builder())
+        secretsManagerClient = SimpleSecretsManagerClient(factory.create(context) as SecretsManagerClient)
 
         createResources(context.requiredTestClass)
     }
@@ -38,8 +38,8 @@ class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     private fun createResources(annotatedElement: AnnotatedElement) {
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
-            annotation.get().topicNames.forEach {
-                snsClient.createTopic(it)
+            annotation.get().secrets.forEach {
+                secretsManagerClient.createSecret(it.name, it.value)
             }
         }
     }
@@ -47,13 +47,13 @@ class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     private fun deleteResources(annotatedElement: AnnotatedElement) {
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
-            annotation.get().topicNames.forEach {
-                snsClient.deleteTopic(it)
+            annotation.get().secrets.forEach {
+                secretsManagerClient.deleteSecret(it.name)
             }
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SnsSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, SnsSetup::class.java)
+    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SecretsManagerSetup> {
+        return AnnotationUtils.findAnnotation(annotatedElement, SecretsManagerSetup::class.java)
     }
 }

@@ -1,24 +1,24 @@
-package com.github.awstest.junit5
+package com.github.awstest.sns.junit5
 
 import com.github.awstest.AwsClientFactory
-import com.github.awstest.SimpleSqsClient
+import com.github.awstest.sns.SimpleSnsClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
-import software.amazon.awssdk.services.sqs.SqsClient
-import software.amazon.awssdk.services.sqs.SqsClientBuilder
+import software.amazon.awssdk.services.sns.SnsClient
+import software.amazon.awssdk.services.sns.SnsClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
-class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
-    private lateinit var sqsClient: SimpleSqsClient
+class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
+    private lateinit var snsClient: SimpleSnsClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<SqsClientBuilder, SqsClient>(SqsClient.builder())
-        sqsClient = SimpleSqsClient(factory.create(context) as SqsClient)
+        val factory = AwsClientFactory<SnsClientBuilder, SnsClient>(SnsClient.builder())
+        snsClient = SimpleSnsClient(factory.create(context) as SnsClient)
 
         createResources(context.requiredTestClass)
     }
@@ -38,8 +38,8 @@ class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     private fun createResources(annotatedElement: AnnotatedElement) {
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
-            annotation.get().queueNames.forEach {
-                sqsClient.createQueue(it)
+            annotation.get().topicNames.forEach {
+                snsClient.createTopic(it)
             }
         }
     }
@@ -47,13 +47,13 @@ class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     private fun deleteResources(annotatedElement: AnnotatedElement) {
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
-            annotation.get().queueNames.forEach {
-                sqsClient.deleteQueue(it)
+            annotation.get().topicNames.forEach {
+                snsClient.deleteTopic(it)
             }
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SqsSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, SqsSetup::class.java)
+    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SnsSetup> {
+        return AnnotationUtils.findAnnotation(annotatedElement, SnsSetup::class.java)
     }
 }

@@ -1,4 +1,4 @@
-package com.github.awstest
+package com.github.awstest.sns
 
 import software.amazon.awssdk.services.sns.SnsClient
 import software.amazon.awssdk.services.sns.model.CreateTopicRequest

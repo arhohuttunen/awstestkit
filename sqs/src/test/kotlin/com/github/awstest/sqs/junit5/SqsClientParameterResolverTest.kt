@@ -1,4 +1,4 @@
-package com.github.awstest.junit5
+package com.github.awstest.sqs.junit5
 
 import com.github.awstest.AwsClient
 import org.assertj.core.api.Assertions.assertThat

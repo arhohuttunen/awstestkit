@@ -1,6 +1,7 @@
-package com.github.awstest.junit5
+package com.github.awstest.secretsmanager.junit5
 
 import com.github.awstest.AwsClient
+import com.github.awstest.secretsmanager.junit5.SecretsManagerClientParameterResolver
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

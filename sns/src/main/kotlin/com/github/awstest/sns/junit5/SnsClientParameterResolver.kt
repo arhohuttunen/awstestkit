@@ -1,4 +1,4 @@
-package com.github.awstest.junit5
+package com.github.awstest.sns.junit5
 
 import com.github.awstest.AwsClientFactory
 import com.github.awstest.SdkClientParameterResolver

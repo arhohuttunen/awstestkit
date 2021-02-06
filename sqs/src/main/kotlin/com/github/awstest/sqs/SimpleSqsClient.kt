@@ -1,4 +1,4 @@
-package com.github.awstest
+package com.github.awstest.sqs
 
 import software.amazon.awssdk.services.sqs.SqsClient
 import software.amazon.awssdk.services.sqs.model.CreateQueueRequest

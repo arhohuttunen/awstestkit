@@ -1,4 +1,4 @@
-package com.github.awstest
+package com.github.awstest.secretsmanager
 
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 import software.amazon.awssdk.services.secretsmanager.model.CreateSecretRequest
