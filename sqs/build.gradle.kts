@@ -7,7 +7,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.junit.jupiter:junit-jupiter:5.7.1")
     implementation("software.amazon.awssdk:aws-core:2.15.71")
-    implementation("software.amazon.awssdk:sqs:2.15.71")
+    implementation("software.amazon.awssdk:sqs:2.15.77")
     testImplementation("org.assertj:assertj-core:3.19.0")
 }
 
