@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
+import software.amazon.awssdk.services.secretsmanager.SecretsManagerClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -14,7 +15,8 @@ class LocalStackSecretsManagerExtension : BeforeAllCallback, AfterAllCallback, B
     private lateinit var secretsManagerClient: SimpleSecretsManagerClient
 
     override fun beforeAll(context: ExtensionContext) {
-        secretsManagerClient = SimpleSecretsManagerClient(SecretsManagerClientParameterResolver().createClient(SecretsManagerClient::class, context) as SecretsManagerClient)
+        val factory = AwsClientFactory<SecretsManagerClientBuilder, SecretsManagerClient>(SecretsManagerClient.builder())
+        secretsManagerClient = SimpleSecretsManagerClient(factory.create(context) as SecretsManagerClient)
 
         createResources(context.requiredTestClass)
     }
