@@ -11,3 +11,7 @@ dependencies {
     implementation("org.testcontainers:localstack:1.15.1")
     testImplementation("org.assertj:assertj-core:3.19.0")
 }
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
