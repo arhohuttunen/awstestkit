@@ -1,6 +1,5 @@
 package com.github.awstest.secretsmanager.junit5
 
-import com.github.awstest.AwsClientFactory
 import com.github.awstest.secretsmanager.SimpleSecretsManagerClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
-import software.amazon.awssdk.services.secretsmanager.SecretsManagerClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,7 @@ class SecretsManagerSetupExtension : BeforeAllCallback, AfterAllCallback, Before
     private lateinit var secretsManagerClient: SimpleSecretsManagerClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<SecretsManagerClientBuilder, SecretsManagerClient>(SecretsManagerClient.builder())
+        val factory = SecretsManagerClientFactory(SecretsManagerClient.builder())
         secretsManagerClient = SimpleSecretsManagerClient(factory.create(context))
 
         createResources(context.requiredTestClass)

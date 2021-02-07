@@ -14,8 +14,8 @@ class SqsClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            SqsClient::class to AwsClientFactory<SqsClientBuilder, SqsClient>(SqsClient.builder()),
-            SqsAsyncClient::class to AwsClientFactory<SqsAsyncClientBuilder, SqsAsyncClient>(SqsAsyncClient.builder())
+            SqsClient::class to SqsClientFactory(SqsClient.builder()),
+            SqsAsyncClient::class to SqsAsyncClientFactory(SqsAsyncClient.builder())
         )
     }
 }

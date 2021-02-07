@@ -1,6 +1,5 @@
 package com.github.awstest.s3.junit5
 
-import com.github.awstest.AwsClientFactory
 import com.github.awstest.s3.SimpleS3Client
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.s3.S3Client
-import software.amazon.awssdk.services.s3.S3ClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,7 @@ class S3SetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback
     private lateinit var s3Client: SimpleS3Client
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<S3ClientBuilder, S3Client>(S3Client.builder())
+        val factory = S3ClientFactory(S3Client.builder())
         s3Client = SimpleS3Client(factory.create(context))
 
         createResources(context.requiredTestClass)

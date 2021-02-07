@@ -1,6 +1,5 @@
 package com.github.awstest.dynamodb.junit5
 
-import com.github.awstest.AwsClientFactory
 import com.github.awstest.dynamodb.SimpleDynamoDbClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
-import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,7 @@ class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
     private lateinit var dynamoDbClient: SimpleDynamoDbClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<DynamoDbClientBuilder, DynamoDbClient>(DynamoDbClient.builder())
+        val factory = DynamoDbClientFactory(DynamoDbClient.builder())
         dynamoDbClient = SimpleDynamoDbClient(factory.create(context))
 
         createResources(context.requiredTestClass)
@@ -39,7 +37,10 @@ class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
         val annotation = findAnnotation(annotatedElement)
         if (annotation.isPresent) {
             annotation.get().tables.forEach { table ->
-                dynamoDbClient.createTable(table.tableName, table.keySchema.associateBy({it.attributeName}, {it.keyType}))
+                dynamoDbClient.createTable(
+                    table.tableName,
+                    table.keySchema.associateBy({ it.attributeName }, { it.keyType })
+                )
             }
         }
     }

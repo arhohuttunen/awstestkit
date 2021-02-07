@@ -14,8 +14,8 @@ class S3ClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            S3Client::class to AwsClientFactory<S3ClientBuilder, S3Client>(S3Client.builder()),
-            S3AsyncClient::class to AwsClientFactory<S3AsyncClientBuilder, S3AsyncClient>(S3AsyncClient.builder())
+            S3Client::class to S3ClientFactory(S3Client.builder()),
+            S3AsyncClient::class to S3AsyncClientFactory(S3AsyncClient.builder())
         )
     }
 }

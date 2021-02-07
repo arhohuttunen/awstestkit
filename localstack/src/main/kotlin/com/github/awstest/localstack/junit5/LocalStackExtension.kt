@@ -16,6 +16,7 @@ class LocalStackExtension : BeforeAllCallback, AfterAllCallback {
     override fun beforeAll(context: ExtensionContext) {
         val annotation = context.requiredTestClass.getAnnotation(LocalStackTest::class.java)
 
+        @Suppress("SpreadOperator")
         container = LocalStackContainer(DockerImageName.parse("localstack/localstack:0.12.6"))
             .withServices(*annotation.services)
         container.start()

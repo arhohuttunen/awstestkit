@@ -1,6 +1,5 @@
 package com.github.awstest.sqs.junit5
 
-import com.github.awstest.AwsClientFactory
 import com.github.awstest.sqs.SimpleSqsClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.sqs.SqsClient
-import software.amazon.awssdk.services.sqs.SqsClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,7 @@ class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     private lateinit var sqsClient: SimpleSqsClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<SqsClientBuilder, SqsClient>(SqsClient.builder())
+        val factory = SqsClientFactory(SqsClient.builder())
         sqsClient = SimpleSqsClient(factory.create(context))
 
         createResources(context.requiredTestClass)

@@ -1,6 +1,5 @@
 package com.github.awstest.cloudformation.junit5
 
-import com.github.awstest.AwsClientFactory
 import com.github.awstest.cloudformation.SimpleCloudFormationClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.cloudformation.CloudFormationClient
-import software.amazon.awssdk.services.cloudformation.CloudFormationClientBuilder
 import java.lang.reflect.AnnotatedElement
 import java.util.Optional
 
@@ -17,7 +15,7 @@ class CloudFormationSetupExtension : BeforeAllCallback, AfterAllCallback, Before
     private lateinit var cloudFormationClient: SimpleCloudFormationClient
 
     override fun beforeAll(context: ExtensionContext) {
-        val factory = AwsClientFactory<CloudFormationClientBuilder, CloudFormationClient>(CloudFormationClient.builder())
+        val factory = CloudFormationClientFactory(CloudFormationClient.builder())
         cloudFormationClient = SimpleCloudFormationClient(factory.create(context))
 
         createResources(context.requiredTestClass)

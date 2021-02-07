@@ -14,8 +14,8 @@ class SnsClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            SnsClient::class to AwsClientFactory<SnsClientBuilder, SnsClient>(SnsClient.builder()),
-            SnsAsyncClient::class to AwsClientFactory<SnsAsyncClientBuilder, SnsAsyncClient>(SnsAsyncClient.builder())
+            SnsClient::class to SnsClientFactory(SnsClient.builder()),
+            SnsAsyncClient::class to SnsAsyncClientFactory(SnsAsyncClient.builder())
         )
     }
 }

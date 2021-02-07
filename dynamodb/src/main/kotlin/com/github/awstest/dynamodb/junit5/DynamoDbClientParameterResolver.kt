@@ -4,13 +4,9 @@ import com.github.awstest.AwsClientFactory
 import com.github.awstest.SdkClientParameterResolver
 import software.amazon.awssdk.core.SdkClient
 import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClient
-import software.amazon.awssdk.services.dynamodb.DynamoDbAsyncClientBuilder
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
-import software.amazon.awssdk.services.dynamodb.DynamoDbClientBuilder
 import software.amazon.awssdk.services.dynamodb.streams.DynamoDbStreamsAsyncClient
-import software.amazon.awssdk.services.dynamodb.streams.DynamoDbStreamsAsyncClientBuilder
 import software.amazon.awssdk.services.dynamodb.streams.DynamoDbStreamsClient
-import software.amazon.awssdk.services.dynamodb.streams.DynamoDbStreamsClientBuilder
 import kotlin.reflect.KClass
 
 class DynamoDbClientParameterResolver : SdkClientParameterResolver() {
@@ -18,16 +14,10 @@ class DynamoDbClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            DynamoDbClient::class to AwsClientFactory<DynamoDbClientBuilder, DynamoDbClient>(DynamoDbClient.builder()),
-            DynamoDbAsyncClient::class to AwsClientFactory<DynamoDbAsyncClientBuilder, DynamoDbAsyncClient>(
-                DynamoDbAsyncClient.builder()
-            ),
-            DynamoDbStreamsClient::class to AwsClientFactory<DynamoDbStreamsClientBuilder, DynamoDbStreamsClient>(
-                DynamoDbStreamsClient.builder()
-            ),
-            DynamoDbStreamsAsyncClient::class to AwsClientFactory<DynamoDbStreamsAsyncClientBuilder, DynamoDbStreamsAsyncClient>(
-                DynamoDbStreamsAsyncClient.builder()
-            )
+            DynamoDbClient::class to DynamoDbClientFactory(DynamoDbClient.builder()),
+            DynamoDbAsyncClient::class to DynamoDbAsyncClientFactory(DynamoDbAsyncClient.builder()),
+            DynamoDbStreamsClient::class to DynamoDbStreamsClientFactory(DynamoDbStreamsClient.builder()),
+            DynamoDbStreamsAsyncClient::class to DynamoDbStreamsAsyncClientFactory(DynamoDbStreamsAsyncClient.builder())
         )
     }
 }

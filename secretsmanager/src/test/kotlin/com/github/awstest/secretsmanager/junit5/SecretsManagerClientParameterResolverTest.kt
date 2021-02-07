@@ -10,12 +10,12 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 @ExtendWith(SecretsManagerClientParameterResolver::class)
 class SecretsManagerClientParameterResolverTest {
     @Test
-    fun `resolve SecretsManager client as an argument`(@AwsClient secretsManagerClient: SecretsManagerClient) {
-        assertThat(secretsManagerClient).isNotNull()
+    fun `resolve SecretsManager client as an argument`(@AwsClient client: SecretsManagerClient) {
+        assertThat(client).isNotNull()
     }
 
     @Test
-    fun `resolve SecretsManager async client as an argument`(@AwsClient secretsManagerAsyncClient: SecretsManagerAsyncClient) {
-        assertThat(secretsManagerAsyncClient).isNotNull()
+    fun `resolve SecretsManager async client as an argument`(@AwsClient client: SecretsManagerAsyncClient) {
+        assertThat(client).isNotNull()
     }
 }

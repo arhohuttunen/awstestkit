@@ -15,7 +15,9 @@ class KinesisClientParameterResolver : SdkClientParameterResolver() {
     init {
         factories = mapOf(
             KinesisClient::class to AwsClientFactory<KinesisClientBuilder, KinesisClient>(KinesisClient.builder()),
-            KinesisAsyncClient::class to AwsClientFactory<KinesisAsyncClientBuilder, KinesisAsyncClient>(KinesisAsyncClient.builder())
+            KinesisAsyncClient::class to AwsClientFactory<KinesisAsyncClientBuilder, KinesisAsyncClient>(
+                KinesisAsyncClient.builder()
+            )
         )
     }
 }
