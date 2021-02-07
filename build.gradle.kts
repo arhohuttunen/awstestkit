@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.4.20" apply false
+    java
+    jacoco
     id("io.gitlab.arturbosch.detekt") version("1.15.0")
 }
 
@@ -18,6 +20,7 @@ allprojects {
 
 subprojects {
     apply<DetektPlugin>()
+    apply<JacocoPlugin>()
 
     tasks {
         withType<KotlinCompile> {
@@ -27,5 +30,26 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+    }
+}
+
+jacoco {
+    toolVersion = "0.8.6"
+}
+
+tasks {
+    jacocoTestReport {
+        executionData.setFrom(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
+
+        subprojects
+            .forEach {
+                this@jacocoTestReport.sourceSets(it.sourceSets.main.get())
+                this@jacocoTestReport.dependsOn(it.tasks.test)
+            }
+
+        reports {
+            xml.isEnabled = true
+            xml.destination = file("$buildDir/reports/jacoco/report.xml")
+        }
     }
 }
