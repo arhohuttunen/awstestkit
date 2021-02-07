@@ -16,7 +16,7 @@ abstract class SdkClientParameterResolver : ParameterResolver {
         return annotation.isPresent && factories.containsKey(parameterContext.parameter.type.kotlin)
     }
 
-    override fun resolveParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): SdkClient? {
-        return factories[parameterContext.parameter.type.kotlin]?.create(extensionContext)
+    override fun resolveParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): SdkClient {
+        return factories[parameterContext.parameter.type.kotlin]!!.create(extensionContext)
     }
 }
