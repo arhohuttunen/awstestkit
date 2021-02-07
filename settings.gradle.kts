@@ -1,4 +1,4 @@
-rootProject.name = "awstest"
+rootProject.name = "awstestkit"
 
 include("core")
 include("localstack")
