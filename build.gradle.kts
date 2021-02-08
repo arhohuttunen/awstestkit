@@ -2,7 +2,7 @@ import io.gitlab.arturbosch.detekt.DetektPlugin
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.20" apply false
+    kotlin("jvm") version "1.4.30" apply false
     java
     jacoco
     id("io.gitlab.arturbosch.detekt") version "1.15.0"
