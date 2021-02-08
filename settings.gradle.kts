@@ -1,6 +1,7 @@
 rootProject.name = "awstestkit"
 
 include("core")
+include("documentation")
 include("localstack")
 include("cloudformation")
 include("dynamodb")

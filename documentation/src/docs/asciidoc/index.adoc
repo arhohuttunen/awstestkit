@@ -1,0 +1,5 @@
+[[user-guide]]
+= AWS TestKit User Guide
+Arho Huttunen
+
+include::{includedir}/basic-usage.adoc[]

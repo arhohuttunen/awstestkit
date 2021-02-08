@@ -1,0 +1,8 @@
+[[basic-usage]]
+== Basic Usage
+
+[source,kotlin]
+.Injecting AWS client to the test
+----
+include::{kotlinTestDir}/example/InjectingClient.kt[tags=user_guide]
+----
