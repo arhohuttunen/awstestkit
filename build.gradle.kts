@@ -8,9 +8,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.15.0"
 }
 
-group = "com.github.arhohuttunen"
-version = "1.0-SNAPSHOT"
-
 allprojects {
     repositories {
         mavenCentral()
