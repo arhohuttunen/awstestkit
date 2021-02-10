@@ -4,7 +4,7 @@ import kotlin.collections.mapOf
 
 plugins {
     kotlin("jvm")
-    id("org.asciidoctor.jvm.convert") version "3.3.0"
+    id("org.asciidoctor.jvm.convert") version "3.3.1"
 }
 
 dependencies {
