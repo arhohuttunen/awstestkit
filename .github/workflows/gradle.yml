@@ -22,9 +22,6 @@ jobs:
         with:
           java-version: 15
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
       - name: Build on Java ${{ matrix.java }}
         run: ./gradlew build
 
@@ -45,9 +42,6 @@ jobs:
         run: |
           git config --global user.name "Arho Huttunen"
           git config --global user.email "arho.huttunen@iki.fi"
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
 
       - name: Upload Documentation
         env:
