@@ -16,7 +16,7 @@ dependencies {
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
 val docsVersion = if (snapshot) "snapshot" else rootProject.version
-val docsDir = file("$buildDir/docs/asciidoc")
+val docsDir = file("$buildDir/gh-pages-docs")
 
 gitPublish {
     repoUri.set("https://github.com/arhohuttunen/awstestkit.git")
@@ -24,22 +24,25 @@ gitPublish {
     sign.set(false)
 
     contents {
-        from(docsDir)
-        into("docs")
+        from(docsDir) {
+            into("docs")
+        }
     }
 
     preserve {
         include("**/*")
-        exclude("docs/**")
+        exclude("docs/$docsVersion/**")
     }
 }
 
 tasks {
     withType<AbstractAsciidoctorTask>().configureEach {
         sourceSets["test"].apply {
-            attributes(mapOf(
-                "testDir" to java.srcDirs.first()
-            ))
+            attributes(
+                mapOf(
+                    "testDir" to java.srcDirs.first()
+                )
+            )
             inputs.dir(java.srcDirs.first())
         }
     }
@@ -48,9 +51,30 @@ tasks {
         sources {
             include("**/index.adoc")
         }
+
+        attributes(
+            mapOf(
+                "source-highlighter" to "rouge",
+                "toc" to "left"
+            )
+        )
     }
 
-    gitPublishCommit {
+    val prepareDocsForUploadToGhPages by registering(Copy::class) {
         dependsOn(asciidoctor)
+        outputs.dir(docsDir)
+
+        from("$buildDir/checksum") {
+            include("published-checksum.txt")
+        }
+        from(asciidoctor.map { it.outputDir }) {
+            include("**")
+        }
+        into("$docsDir/$docsVersion")
+        includeEmptyDirs = false
+    }
+
+    gitPublishCopy {
+        dependsOn(prepareDocsForUploadToGhPages)
     }
 }
