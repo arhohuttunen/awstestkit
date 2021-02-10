@@ -1,4 +1,4 @@
-package com.github.awstestkit.cloudformation
+package com.github.awstestkit.cloudformation.junit5
 
 import software.amazon.awssdk.services.cloudformation.CloudFormationClient
 import software.amazon.awssdk.services.cloudformation.model.CreateStackRequest

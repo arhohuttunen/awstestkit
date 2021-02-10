@@ -1,6 +1,5 @@
 package com.github.awstestkit.s3.junit5
 
-import com.github.awstestkit.s3.SimpleS3Client
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback

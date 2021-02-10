@@ -2,7 +2,6 @@ package com.github.awstestkit.localstack.junit5
 
 import com.github.awstestkit.Endpoint
 import com.github.awstestkit.EndpointResolver
-import com.github.awstestkit.localstack.LocalStackEndpoint
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ExtensionContextException
 import org.testcontainers.containers.localstack.LocalStackContainer

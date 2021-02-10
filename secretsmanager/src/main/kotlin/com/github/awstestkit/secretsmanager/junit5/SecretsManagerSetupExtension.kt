@@ -1,6 +1,5 @@
 package com.github.awstestkit.secretsmanager.junit5
 
-import com.github.awstestkit.secretsmanager.SimpleSecretsManagerClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback

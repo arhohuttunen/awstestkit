@@ -1,4 +1,4 @@
-package com.github.awstestkit.localstack
+package com.github.awstestkit.localstack.junit5
 
 import com.github.awstestkit.Endpoint
 import org.testcontainers.containers.localstack.LocalStackContainer

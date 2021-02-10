@@ -1,6 +1,5 @@
 package com.github.awstestkit.dynamodb.junit5
 
-import com.github.awstestkit.dynamodb.SimpleDynamoDbClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback

@@ -1,4 +1,4 @@
-package com.github.awstestkit.s3
+package com.github.awstestkit.s3.junit5
 
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client

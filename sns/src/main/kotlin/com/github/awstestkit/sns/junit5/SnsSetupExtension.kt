@@ -1,7 +1,6 @@
 package com.github.awstestkit.sns.junit5
 
 import com.github.awstestkit.AwsClientFactory
-import com.github.awstestkit.sns.SimpleSnsClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback

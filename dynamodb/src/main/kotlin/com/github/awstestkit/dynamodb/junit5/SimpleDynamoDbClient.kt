@@ -1,4 +1,4 @@
-package com.github.awstestkit.dynamodb
+package com.github.awstestkit.dynamodb.junit5
 
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.AttributeDefinition

@@ -1,6 +1,5 @@
 package com.github.awstestkit.cloudformation.junit5
 
-import com.github.awstestkit.cloudformation.SimpleCloudFormationClient
 import org.junit.jupiter.api.extension.AfterAllCallback
 import org.junit.jupiter.api.extension.AfterEachCallback
 import org.junit.jupiter.api.extension.BeforeAllCallback
