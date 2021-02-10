@@ -10,4 +10,4 @@ Programmer-friendly testing library for working with AWS SDK.
 
 [User Guide]
 
-[User Guide]: https://arhohuttunen.github.io/awstestkit/docs
+[User Guide]: https://arhohuttunen.github.io/awstestkit/docs/snapshot
