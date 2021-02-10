@@ -1,9 +1,8 @@
 import org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-import kotlin.collections.mapOf
 
 plugins {
     kotlin("jvm")
+    java
     id("org.asciidoctor.jvm.convert") version "3.3.1"
     id("org.ajoberstar.git-publish") version "3.0.0"
 }
@@ -38,10 +37,10 @@ gitPublish {
 tasks {
     withType<AbstractAsciidoctorTask>().configureEach {
         sourceSets["test"].apply {
-            withConvention(KotlinSourceSet::class) {
-                attributes(mapOf("kotlinTestDir" to kotlin.srcDirs.first()))
-                inputs.dir(kotlin.srcDirs.first())
-            }
+            attributes(mapOf(
+                "testDir" to java.srcDirs.first()
+            ))
+            inputs.dir(java.srcDirs.first())
         }
     }
 
