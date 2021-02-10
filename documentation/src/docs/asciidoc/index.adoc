@@ -1,5 +1,6 @@
 [[user-guide]]
 = AWS TestKit User Guide
 Arho Huttunen
+:sectnums:
 
 include::{includedir}/basic-usage.adoc[]
