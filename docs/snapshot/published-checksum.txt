@@ -1,0 +1,4 @@
+1e6441876ead0115b7bfac0c80e498f3  documentation/src/docs/asciidoc/index.adoc
+3a3c74b5da5c2f797b33484b1d2d3e78  documentation/src/test/java/example/InjectingClient.java
+caa31c6e5b54b1c127dbd92116172709  documentation/src/docs/asciidoc/basic-usage.adoc
+ea56c036f256679f652810cfa5595228  documentation/build.gradle.kts
