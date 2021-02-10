@@ -2,4 +2,12 @@
 [![codecov](https://codecov.io/gh/arhohuttunen/awstestkit/branch/main/graph/badge.svg)](https://codecov.io/gh/arhohuttunen/awstestkit)
 [![codefactor](https://www.codefactor.io/repository/github/arhohuttunen/awstestkit/badge/main)](https://www.codefactor.io/repository/github/arhohuttunen/awstestkit/overview/main)
 
-A JUnit 5 extension for working with AWS SDK.
+# AWS TestKit
+
+Programmer-friendly testing library for working with AWS SDK.
+
+## Documentation
+
+[User Guide]
+
+[User Guide]: https://arhohuttunen.github.io/awstestkit/docs
