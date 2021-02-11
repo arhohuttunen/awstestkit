@@ -633,9 +633,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the SecretsManager extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SECRETSMANAGER</span><span class="o">)</span>
-<span class="nd">@SecretsManagerSetup</span><span class="o">(</span><span class="n">secrets</span> <span class="o">=</span> <span class="o">{</span>
+<span class="nd">@SecretsManagerTest</span>
+<span class="nd">@Secrets</span><span class="o">(</span>
         <span class="nd">@Secret</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"SecretName"</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"SecretValue"</span><span class="o">)</span>
-<span class="o">})</span>
+<span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecretsManagerExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">setupSecrets</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SecretsManagerClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
@@ -653,7 +654,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the SNS extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SNS</span><span class="o">)</span>
-<span class="nd">@SnsSetup</span><span class="o">(</span><span class="n">topicNames</span> <span class="o">=</span> <span class="s">"TopicName"</span><span class="o">)</span>
+<span class="nd">@SnsTest</span>
+<span class="nd">@SnsTopic</span><span class="o">(</span><span class="s">"TopicName"</span><span class="o">)</span>
 <span class="kd">class</span> <span class="nc">SnsExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">setupTopics</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
@@ -671,7 +673,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the SQS extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SQS</span><span class="o">)</span>
-<span class="nd">@SqsSetup</span><span class="o">(</span><span class="n">queueNames</span> <span class="o">=</span> <span class="s">"QueueName"</span><span class="o">)</span>
+<span class="nd">@SqsTest</span>
+<span class="nd">@SqsQueue</span><span class="o">(</span><span class="s">"QueueName"</span><span class="o">)</span>
 <span class="kd">class</span> <span class="nc">SqsExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">setupQueues</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SqsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
@@ -686,7 +689,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-11 17:10:07 UTC
+Last updated 2021-02-11 19:01:25 UTC
 </div>
 </div>
 <style>

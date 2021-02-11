@@ -1,6 +1,7 @@
 0a38f29e79a90037d896204c64d0c08b  documentation/src/test/java/example/LocalStackExtensionTest.java
-2c35ec80675bea29aee8c5405a765bd8  documentation/src/test/java/example/SqsExtensionTest.java
+4777bd99ba7dd882fe6550fb4eb4b80c  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 4b9b2aa6f62067e826301bd5c0b3e2b9  documentation/src/test/java/example/CloudFormationExtensionTest.java
+5c040f3c173c4e847008a05bda972f30  documentation/src/test/java/example/SnsExtensionTest.java
 5fc191405a3a47556c6d777c9adf88d4  documentation/src/docs/asciidoc/custom-endpoint.adoc
 660b3233cad3843e19cb9c8a0498e2e0  documentation/src/test/java/example/MyEndpointResolver.java
 6ebf7d92837a509d5859937944274367  documentation/src/docs/asciidoc/localstack.adoc
@@ -10,9 +11,8 @@
 8b8126618025d6fdec43a8f6369e4e39  documentation/src/docs/asciidoc/secretsmanager.adoc
 97d6172ce785ccb642c46cf5941ab380  documentation/src/docs/asciidoc/sns.adoc
 9eebc0ed9c25b10e92a766cebe5a18db  documentation/src/docs/asciidoc/index.adoc
+aa6c3390e953500cc83ba4e38e02c224  documentation/src/test/java/example/SqsExtensionTest.java
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
-ccbaeaedc35a4484f262c61995cb8084  documentation/src/test/java/example/SnsExtensionTest.java
-d853a9f7d740b16ce778456c2716ecda  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 de23fa03dfc1e6e86237ba560ca28cbd  documentation/src/docs/asciidoc/sqs.adoc
 e491d79c8a8b94644a1a1674d6fa3fd2  documentation/build.gradle.kts
 eea2465e4cd55b77b07ac29e19dffdfe  documentation/src/docs/asciidoc/dynamodb.adoc
