@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.Extensions
 @Retention(AnnotationRetention.RUNTIME)
 @Extensions(
     ExtendWith(SqsSetupExtension::class),
-    ExtendWith(SqsClientParameterResolver::class)
+    ExtendWith(SqsClientParameterResolver::class),
+    ExtendWith(QueueUrlParameterResolver::class)
 )
 annotation class SqsTest
