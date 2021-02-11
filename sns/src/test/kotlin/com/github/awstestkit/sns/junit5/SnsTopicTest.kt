@@ -8,8 +8,9 @@ import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.sns.SnsClient
 
 @LocalStackTest(LocalStackContainer.Service.SNS)
-@SnsSetup(topicNames = ["Topic"])
-class SnsSetupTest {
+@SnsTest
+@SnsTopics(SnsTopic("Topic"))
+class SnsTopicTest {
     @Test
     fun `topics are created from class annotations`(@AwsClient snsClient: SnsClient) {
         val listTopicsResponse = snsClient.listTopics()
@@ -17,7 +18,7 @@ class SnsSetupTest {
     }
 
     @Test
-    @SnsSetup(topicNames = ["AnotherTopic"])
+    @SnsTopic("AnotherTopic")
     fun `topics are created from method annotations`(@AwsClient snsClient: SnsClient) {
         val listTopicsResponse = snsClient.listTopics()
         assertThat(listTopicsResponse.topics()).hasSize(2)

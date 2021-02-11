@@ -4,17 +4,15 @@ import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.sns.SnsClient
 import software.amazon.awssdk.services.sns.model.GetTopicAttributesRequest
 
 @LocalStackTest(LocalStackContainer.Service.SNS)
-@SnsSetup
-@ExtendWith(TopicArnParameterResolver::class)
+@SnsTest
 class TopicArnParameterResolverTest {
     @Test
-    @SnsSetup(topicNames = ["Topic"])
+    @SnsTopic("Topic")
     fun `resolve topic ARN`(
         @TopicArn("Topic") topicArn: String, @AwsClient client: SnsClient
     ) {

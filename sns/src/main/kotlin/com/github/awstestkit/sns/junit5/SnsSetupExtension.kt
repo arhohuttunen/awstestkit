@@ -10,7 +10,6 @@ import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.sns.SnsClient
 import software.amazon.awssdk.services.sns.SnsClientBuilder
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var snsClient: SimpleSnsClient
@@ -35,24 +34,36 @@ class SnsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().topicNames.forEach {
-                snsClient.createTopic(it)
-            }
+        val topics = findTopics(annotatedElement)
+        topics.forEach {
+            snsClient.createTopic(it.value)
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().topicNames.forEach {
-                snsClient.deleteTopic(it)
-            }
+        val topics = findTopics(annotatedElement)
+        topics.forEach {
+            snsClient.deleteTopic(it.value)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SnsSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, SnsSetup::class.java)
+    private fun findTopics(annotatedElement: AnnotatedElement): List<SnsTopic> {
+        val topic = findSnsTopic(annotatedElement)
+        topic?.apply {
+            return listOf(topic)
+        }
+        return findSnsTopics(annotatedElement)
+    }
+
+    private fun findSnsTopic(annotatedElement: AnnotatedElement): SnsTopic? {
+        return AnnotationUtils.findAnnotation(annotatedElement, SnsTopic::class.java).orElse(null)
+    }
+
+    private fun findSnsTopics(annotatedElement: AnnotatedElement): List<SnsTopic> {
+        val topics = AnnotationUtils.findAnnotation(annotatedElement, SnsTopics::class.java)
+        if (topics.isPresent) {
+            return topics.get().value.toList()
+        }
+        return emptyList()
     }
 }

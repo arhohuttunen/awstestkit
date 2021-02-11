@@ -3,10 +3,11 @@ package com.github.awstestkit.sns.junit5
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.Extensions
 
-@Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 @Extensions(
     ExtendWith(SnsSetupExtension::class),
-    ExtendWith(SnsClientParameterResolver::class)
+    ExtendWith(SnsClientParameterResolver::class),
+    ExtendWith(TopicArnParameterResolver::class)
 )
-annotation class SnsSetup(val topicNames: Array<String> = [])
+annotation class SnsTest
