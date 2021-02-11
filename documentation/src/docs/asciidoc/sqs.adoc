@@ -1,0 +1,8 @@
+[[sqs]]
+== SQS Extension
+
+[source,java]
+.Using the SQS extension
+----
+include::{testDir}/example/SqsExtensionTest.java[tags=user_guide]
+----

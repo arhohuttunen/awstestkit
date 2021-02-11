@@ -1,0 +1,8 @@
+[[cloudformation]]
+== CloudFormation Extension
+
+[source,java]
+.Using the CloudFormation extension
+----
+include::{testDir}/example/CloudFormationExtensionTest.java[tags=user_guide]
+----

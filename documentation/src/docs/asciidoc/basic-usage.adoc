@@ -1,8 +1,0 @@
-[[basic-usage]]
-== Basic Usage
-
-[source,java]
-.Injecting AWS client to the test
-----
-include::{testDir}/example/InjectingClient.java[tags=user_guide]
-----

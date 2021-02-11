@@ -1,0 +1,8 @@
+[[dynamodb]]
+== DynamoDB Extension
+
+[source,java]
+.Using the DynamoDB extension
+----
+include::{testDir}/example/DynamoDbExtensionTest.java[tags=user_guide]
+----

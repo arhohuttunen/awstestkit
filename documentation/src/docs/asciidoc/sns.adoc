@@ -1,0 +1,8 @@
+[[sns]]
+== SNS Extension
+
+[source,java]
+.Using the SNS extension
+----
+include::{testDir}/example/SnsExtensionTest.java[tags=user_guide]
+----
