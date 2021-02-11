@@ -8,8 +8,9 @@ import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.sqs.SqsClient
 
 @LocalStackTest(LocalStackContainer.Service.SQS)
-@SqsSetup(queueNames = ["Queue"])
-class SqsSetupTest {
+@SqsTest
+@SqsQueues(SqsQueue("Queue"))
+class SqsQueueTest {
     @Test
     fun `queues are created from class annotations`(@AwsClient sqsClient: SqsClient) {
         val listQueuesResponse = sqsClient.listQueues()
@@ -17,7 +18,7 @@ class SqsSetupTest {
     }
 
     @Test
-    @SqsSetup(queueNames = ["AnotherQueue"])
+    @SqsQueue("AnotherQueue")
     fun `queues are created from method annotations`(@AwsClient sqsClient: SqsClient) {
         val listQueuesResponse = sqsClient.listQueues()
         assertThat(listQueuesResponse.queueUrls()).hasSize(2)

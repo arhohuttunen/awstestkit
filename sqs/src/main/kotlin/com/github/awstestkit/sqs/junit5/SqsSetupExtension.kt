@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.sqs.SqsClient
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var sqsClient: SimpleSqsClient
@@ -33,24 +32,36 @@ class SqsSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallbac
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().queueNames.forEach {
-                sqsClient.createQueue(it)
-            }
+        val queues = findQueues(annotatedElement)
+        queues.forEach {
+            sqsClient.createQueue(it.value)
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().queueNames.forEach {
-                sqsClient.deleteQueue(it)
-            }
+        val queues = findQueues(annotatedElement)
+        queues.forEach {
+            sqsClient.deleteQueue(it.value)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SqsSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, SqsSetup::class.java)
+    private fun findQueues(annotatedElement: AnnotatedElement): List<SqsQueue> {
+        val topic = findSqsQueue(annotatedElement)
+        topic?.apply {
+            return listOf(topic)
+        }
+        return findSqsQueues(annotatedElement)
+    }
+
+    private fun findSqsQueue(annotatedElement: AnnotatedElement): SqsQueue? {
+        return AnnotationUtils.findAnnotation(annotatedElement, SqsQueue::class.java).orElse(null)
+    }
+
+    private fun findSqsQueues(annotatedElement: AnnotatedElement): List<SqsQueue> {
+        val topics = AnnotationUtils.findAnnotation(annotatedElement, SqsQueues::class.java)
+        if (topics.isPresent) {
+            return topics.get().value.toList()
+        }
+        return emptyList()
     }
 }
