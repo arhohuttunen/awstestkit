@@ -13,9 +13,7 @@ import software.amazon.awssdk.services.sns.model.GetTopicAttributesRequest
 class TopicArnParameterResolverTest {
     @Test
     @SnsTopic("Topic")
-    fun `resolve topic ARN`(
-        @TopicArn("Topic") topicArn: String, @AwsClient client: SnsClient
-    ) {
+    fun `resolve topic ARN`(@TopicArn("Topic") topicArn: String, @AwsClient client: SnsClient) {
         val request = GetTopicAttributesRequest.builder()
             .topicArn(topicArn)
             .build()
