@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class SecretsManagerSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var secretsManagerClient: SimpleSecretsManagerClient
@@ -33,24 +32,37 @@ class SecretsManagerSetupExtension : BeforeAllCallback, AfterAllCallback, Before
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().secrets.forEach {
-                secretsManagerClient.createSecret(it.name, it.value)
-            }
+        val secrets = findSecrets(annotatedElement)
+        secrets.forEach {
+            secretsManagerClient.createSecret(it.name, it.value)
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().secrets.forEach {
-                secretsManagerClient.deleteSecret(it.name)
-            }
+        val secrets = findSecrets(annotatedElement)
+        secrets.forEach {
+            secretsManagerClient.deleteSecret(it.name)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<SecretsManagerSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, SecretsManagerSetup::class.java)
+    private fun findSecrets(annotatedElement: AnnotatedElement): List<Secret> {
+        val secret = findSecretsManagerSecret(annotatedElement)
+        secret?.apply {
+            return listOf(secret)
+        }
+        return findSecretsManagerSecrets(annotatedElement)
     }
+
+    private fun findSecretsManagerSecret(annotatedElement: AnnotatedElement): Secret? {
+        return AnnotationUtils.findAnnotation(annotatedElement, Secret::class.java).orElse(null)
+    }
+
+    private fun findSecretsManagerSecrets(annotatedElement: AnnotatedElement): List<Secret> {
+        val secrets = AnnotationUtils.findAnnotation(annotatedElement, Secrets::class.java)
+        if (secrets.isPresent) {
+            return secrets.get().value.toList()
+        }
+        return emptyList()
+    }
+
 }
