@@ -4,9 +4,7 @@ import com.github.awstestkit.AwsClientFactory
 import com.github.awstestkit.SdkClientParameterResolver
 import software.amazon.awssdk.core.SdkClient
 import software.amazon.awssdk.services.kinesis.KinesisAsyncClient
-import software.amazon.awssdk.services.kinesis.KinesisAsyncClientBuilder
 import software.amazon.awssdk.services.kinesis.KinesisClient
-import software.amazon.awssdk.services.kinesis.KinesisClientBuilder
 import kotlin.reflect.KClass
 
 class KinesisClientParameterResolver : SdkClientParameterResolver() {
@@ -14,10 +12,8 @@ class KinesisClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            KinesisClient::class to AwsClientFactory<KinesisClientBuilder, KinesisClient>(KinesisClient.builder()),
-            KinesisAsyncClient::class to AwsClientFactory<KinesisAsyncClientBuilder, KinesisAsyncClient>(
-                KinesisAsyncClient.builder()
-            )
+            KinesisClient::class to KinesisClientFactory(KinesisClient.builder()),
+            KinesisAsyncClient::class to KinesisAsyncClientFactory(KinesisAsyncClient.builder())
         )
     }
 }
