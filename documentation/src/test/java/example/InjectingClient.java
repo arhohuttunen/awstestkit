@@ -1,7 +1,6 @@
 package example;
 
 // tag::user_guide[]
-
 import com.github.awstestkit.AwsClient;
 import com.github.awstestkit.cloudformation.junit5.CloudFormationClientParameterResolver;
 import org.junit.jupiter.api.Test;

@@ -4,3 +4,5 @@ Arho Huttunen
 :sectnums:
 
 include::{includedir}/basic-usage.adoc[]
+include::{includedir}/localstack.adoc[]
+include::{includedir}/custom-endpoint.adoc[]

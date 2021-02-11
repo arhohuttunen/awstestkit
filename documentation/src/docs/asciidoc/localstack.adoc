@@ -1,0 +1,8 @@
+[[localstack]]
+== LocalStack Extension
+
+[source,java]
+.Using the LocalStack extension
+----
+include::{testDir}/example/LocalStackExtensionTest.java[tags=user_guide]
+----
