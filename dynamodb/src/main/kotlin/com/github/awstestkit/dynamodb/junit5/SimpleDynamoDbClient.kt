@@ -10,18 +10,22 @@ import software.amazon.awssdk.services.dynamodb.model.KeyType
 import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType
 
 class SimpleDynamoDbClient(private val dynamoDbClient: DynamoDbClient) {
-    fun createTable(name: String, keys: Map<String, KeyType>) {
+    fun createTable(name: String, keys: Map<String, KeyType>, attributeDefinitions: Map<String, ScalarAttributeType>) {
         val requestBuilder = CreateTableRequest.builder()
             .tableName(name)
 
-        keys.forEach { (name, type) ->
+        attributeDefinitions.forEach { (name, type) ->
             requestBuilder
                 .attributeDefinitions(
                     AttributeDefinition.builder()
                         .attributeName(name)
-                        .attributeType(ScalarAttributeType.S)
+                        .attributeType(type)
                         .build()
                 )
+        }
+
+        keys.forEach { (name, type) ->
+            requestBuilder
                 .keySchema(
                     KeySchemaElement.builder()
                         .attributeName(name)

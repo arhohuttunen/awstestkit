@@ -38,7 +38,8 @@ class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
             annotation.get().tables.forEach { table ->
                 dynamoDbClient.createTable(
                     table.tableName,
-                    table.keySchema.associateBy({ it.attributeName }, { it.keyType })
+                    table.keySchema.associateBy({ it.attributeName }, { it.keyType }),
+                    table.attributeDefinitions.associateBy({ it.attributeName}, { it.attributeType })
                 )
             }
         }
