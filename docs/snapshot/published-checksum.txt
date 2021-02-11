@@ -1,4 +1,9 @@
-1e6441876ead0115b7bfac0c80e498f3  documentation/src/docs/asciidoc/index.adoc
-3a3c74b5da5c2f797b33484b1d2d3e78  documentation/src/test/java/example/InjectingClient.java
+011377e134104a65fe0a4a700b984d6b  documentation/build.gradle.kts
+5fc191405a3a47556c6d777c9adf88d4  documentation/src/docs/asciidoc/custom-endpoint.adoc
+660b3233cad3843e19cb9c8a0498e2e0  documentation/src/test/java/example/MyEndpointResolver.java
+6ebf7d92837a509d5859937944274367  documentation/src/docs/asciidoc/localstack.adoc
+87fef6c10a92bff1395bd24d0206f63c  documentation/src/test/java/example/CustomEndpointTest.java
+c6ce515f1b3f91ee60160ffe542f4118  documentation/src/test/java/example/LocalStackExtensionTest.java
 caa31c6e5b54b1c127dbd92116172709  documentation/src/docs/asciidoc/basic-usage.adoc
-ea56c036f256679f652810cfa5595228  documentation/build.gradle.kts
+d68d3409433084e4661706882ca376d3  documentation/src/docs/asciidoc/index.adoc
+e56b15a6d60bb12317f9942821a88a0e  documentation/src/test/java/example/InjectingClient.java

@@ -448,6 +448,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#basic-usage">1. Basic Usage</a></li>
+<li><a href="#localstack">2. LocalStack Extension</a></li>
+<li><a href="#custom-endpoint">3. Custom Endpoint</a></li>
 </ul>
 </div>
 </div>
@@ -488,11 +490,112 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="localstack">2. LocalStack Extension</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Using the LocalStack extension</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">com.github.awstestkit.AwsClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.localstack.junit5.LocalStackTest</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.sns.junit5.SnsClientParameterResolver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.testcontainers.containers.localstack.LocalStackContainer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">software.amazon.awssdk.services.sns.SnsClient</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.</span><span class="na">assertIterableEquals</span><span class="o">;</span>
+
+<span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SNS</span><span class="o">)</span>
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">SnsClientParameterResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">LocalStackExtensionTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">localStackIsRunning</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">assertIterableEquals</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">listTopics</span><span class="o">().</span><span class="na">topics</span><span class="o">(),</span> <span class="n">emptyList</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="custom-endpoint">3. Custom Endpoint</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Writing your custom endpoint resolver</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">com.github.awstestkit.Endpoint</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.EndpointResolver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jetbrains.annotations.NotNull</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtensionContext</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URISyntaxException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyEndpointResolver</span> <span class="kd">implements</span> <span class="nc">EndpointResolver</span> <span class="o">{</span>
+    <span class="nd">@NotNull</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Endpoint</span> <span class="nf">resolveEndpoint</span><span class="o">(</span><span class="nd">@NotNull</span> <span class="nc">ExtensionContext</span> <span class="n">extensionContext</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Endpoint</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nd">@NotNull</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="no">URI</span> <span class="nf">url</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">URISyntaxException</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">URI</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"AWS_URL"</span><span class="o">));</span>
+            <span class="o">}</span>
+
+            <span class="nd">@NotNull</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nc">String</span> <span class="nf">region</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"AWS_REGION"</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="nd">@NotNull</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nc">String</span> <span class="nf">accessKey</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"AWS_ACCESS_KEY"</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="nd">@NotNull</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nc">String</span> <span class="nf">secretKey</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="nc">System</span><span class="o">.</span><span class="na">getenv</span><span class="o">(</span><span class="s">"AWS_SECRET_KEY"</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">};</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Configuring your custom endpoint</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">com.github.awstestkit.AwsClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.AwsEndpoint</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.sns.junit5.SnsClientParameterResolver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">software.amazon.awssdk.services.sns.SnsClient</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.</span><span class="na">assertIterableEquals</span><span class="o">;</span>
+
+<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">SnsClientParameterResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@AwsEndpoint</span><span class="o">(</span><span class="n">endpointResolver</span> <span class="o">=</span> <span class="nc">MyEndpointResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">CustomEndpointTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">getTopics</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">assertIterableEquals</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">listTopics</span><span class="o">().</span><span class="na">topics</span><span class="o">(),</span> <span class="n">emptyList</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-10 18:11:01 UTC
+Last updated 2021-02-11 15:03:24 UTC
 </div>
 </div>
 <style>
