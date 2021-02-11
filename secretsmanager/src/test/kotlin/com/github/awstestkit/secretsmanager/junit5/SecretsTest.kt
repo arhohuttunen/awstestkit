@@ -8,6 +8,7 @@ import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 
 @LocalStackTest(LocalStackContainer.Service.SECRETSMANAGER)
+@SecretsManagerTest
 @Secrets(Secret(name = "SecretName", value = "SecretValue"))
 class SecretsTest {
     @Test
