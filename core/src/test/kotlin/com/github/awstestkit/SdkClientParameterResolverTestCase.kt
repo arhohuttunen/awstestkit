@@ -1,5 +1,6 @@
 package com.github.awstestkit
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
@@ -15,18 +16,18 @@ import kotlin.reflect.KClass
 class SdkClientParameterResolverTestCase {
 
     @Test
-    fun resolveClientParameterSuccessfully(@AwsClient dummyClient: DummyClient) {
-
+    fun resolveClientParameterSuccessfully(@AwsClient annotatedClient: DummyClient) {
+        assertThat(annotatedClient).isNotNull()
     }
 
     @Test
-    fun failWhenClientNotAnnotated(dummyClient: DummyClient) {
-
+    fun failWhenClientNotAnnotated(unannotatedClient: DummyClient) {
+        assertThat(unannotatedClient).isNull()
     }
 
     @Test
     fun failWithUnsupportedClients(@AwsClient unsupportedClient: String) {
-
+        assertThat(unsupportedClient).isNull()
     }
 
     class DummyClient : SdkClient {
