@@ -4,9 +4,7 @@ import com.github.awstestkit.AwsClientFactory
 import com.github.awstestkit.SdkClientParameterResolver
 import software.amazon.awssdk.core.SdkClient
 import software.amazon.awssdk.services.firehose.FirehoseAsyncClient
-import software.amazon.awssdk.services.firehose.FirehoseAsyncClientBuilder
 import software.amazon.awssdk.services.firehose.FirehoseClient
-import software.amazon.awssdk.services.firehose.FirehoseClientBuilder
 import kotlin.reflect.KClass
 
 class FirehoseClientParameterResolver : SdkClientParameterResolver() {
@@ -14,10 +12,8 @@ class FirehoseClientParameterResolver : SdkClientParameterResolver() {
 
     init {
         factories = mapOf(
-            FirehoseClient::class to AwsClientFactory<FirehoseClientBuilder, FirehoseClient>(FirehoseClient.builder()),
-            FirehoseAsyncClient::class to AwsClientFactory<FirehoseAsyncClientBuilder, FirehoseAsyncClient>(
-                FirehoseAsyncClient.builder()
-            )
+            FirehoseClient::class to FirehoseClientFactory(FirehoseClient.builder()),
+            FirehoseAsyncClient::class to FirehoseAsyncClientFactory(FirehoseAsyncClient.builder())
         )
     }
 }
