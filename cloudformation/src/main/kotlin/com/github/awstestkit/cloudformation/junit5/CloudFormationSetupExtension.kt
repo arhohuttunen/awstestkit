@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.cloudformation.CloudFormationClient
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class CloudFormationSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var cloudFormationClient: SimpleCloudFormationClient
@@ -33,24 +32,36 @@ class CloudFormationSetupExtension : BeforeAllCallback, AfterAllCallback, Before
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().stacks.forEach {
-                cloudFormationClient.createStack(it.stackName, it.templateFile)
-            }
+        val stacks = findStacks(annotatedElement)
+        stacks.forEach {
+            cloudFormationClient.createStack(it.name, it.templateFile)
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().stacks.forEach {
-                cloudFormationClient.deleteStack(it.stackName)
-            }
+        val stacks = findStacks(annotatedElement)
+        stacks.forEach {
+            cloudFormationClient.deleteStack(it.name)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<CloudFormationSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, CloudFormationSetup::class.java)
+    private fun findStacks(annotatedElement: AnnotatedElement): List<CfnStack> {
+        val stack = findCfnStack(annotatedElement)
+        stack?.apply {
+            return listOf(stack)
+        }
+        return findCfnStacks(annotatedElement)
+    }
+
+    private fun findCfnStack(annotatedElement: AnnotatedElement): CfnStack? {
+        return AnnotationUtils.findAnnotation(annotatedElement, CfnStack::class.java).orElse(null)
+    }
+
+    private fun findCfnStacks(annotatedElement: AnnotatedElement): List<CfnStack> {
+        val stacks = AnnotationUtils.findAnnotation(annotatedElement, CfnStacks::class.java)
+        if (stacks.isPresent) {
+            return stacks.get().value.toList()
+        }
+        return emptyList()
     }
 }
