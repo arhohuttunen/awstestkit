@@ -15,6 +15,6 @@
 9eebc0ed9c25b10e92a766cebe5a18db  documentation/src/docs/asciidoc/index.adoc
 aa6c3390e953500cc83ba4e38e02c224  documentation/src/test/java/example/SqsExtensionTest.java
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
+b50b8b7a647701561b56c146565e7e0f  documentation/build.gradle.kts
 de23fa03dfc1e6e86237ba560ca28cbd  documentation/src/docs/asciidoc/sqs.adoc
-e491d79c8a8b94644a1a1674d6fa3fd2  documentation/build.gradle.kts
 eea2465e4cd55b77b07ac29e19dffdfe  documentation/src/docs/asciidoc/dynamodb.adoc
