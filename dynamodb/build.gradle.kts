@@ -9,6 +9,6 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.15.71")
     implementation("software.amazon.awssdk:dynamodb:2.15.71")
     testImplementation(project(":localstack"))
-    testImplementation("org.testcontainers:localstack:1.15.1")
+    testImplementation("org.testcontainers:localstack:1.15.2")
     testImplementation("org.assertj:assertj-core:3.19.0")
 }
