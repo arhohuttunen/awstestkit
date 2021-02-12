@@ -556,9 +556,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the CloudFormation extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">CLOUDFORMATION</span><span class="o">)</span>
-<span class="nd">@CloudFormationSetup</span><span class="o">(</span><span class="n">stacks</span> <span class="o">=</span> <span class="o">{</span>
-        <span class="nd">@CfnStack</span><span class="o">(</span><span class="n">stackName</span> <span class="o">=</span> <span class="s">"awstestkit-stack"</span><span class="o">,</span> <span class="n">templateFile</span> <span class="o">=</span> <span class="s">"src/test/resources/template.yml"</span><span class="o">)</span>
-<span class="o">})</span>
+<span class="nd">@CloudFormationTest</span>
+<span class="nd">@CfnStacks</span><span class="o">(</span>
+        <span class="nd">@CfnStack</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"awstestkit-stack"</span><span class="o">,</span> <span class="n">templateFile</span> <span class="o">=</span> <span class="s">"src/test/resources/template.yml"</span><span class="o">)</span>
+<span class="o">)</span>
 <span class="kd">class</span> <span class="nc">CloudFormationExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">setupStacks</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">CloudFormationClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
@@ -576,7 +577,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the DynamoDB extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">DYNAMODB</span><span class="o">)</span>
-<span class="nd">@DynamoDbSetup</span><span class="o">(</span><span class="n">tables</span> <span class="o">=</span> <span class="o">{</span>
+<span class="nd">@DynamoDbTest</span>
+<span class="nd">@DynamoDbTables</span><span class="o">(</span>
         <span class="nd">@DynamoDbTable</span><span class="o">(</span>
                 <span class="n">tableName</span> <span class="o">=</span> <span class="s">"table"</span><span class="o">,</span>
                 <span class="n">keySchema</span> <span class="o">=</span> <span class="nd">@DynamoDbKeySchemaElement</span><span class="o">(</span>
@@ -588,7 +590,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
                         <span class="n">attributeType</span> <span class="o">=</span> <span class="nc">ScalarAttributeType</span><span class="o">.</span><span class="na">S</span>
                 <span class="o">)</span>
         <span class="o">)</span>
-<span class="o">})</span>
+<span class="o">)</span>
 <span class="kd">class</span> <span class="nc">DynamoDbExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
     <span class="kt">void</span> <span class="nf">setupTables</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">DynamoDbClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
@@ -689,7 +691,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-11 19:01:25 UTC
+Last updated 2021-02-12 05:39:00 UTC
 </div>
 </div>
 <style>
