@@ -19,7 +19,7 @@ dependencies {
     testImplementation(project(":sns"))
     testImplementation(project(":sqs"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-    testImplementation("org.testcontainers:localstack:1.15.1")
+    testImplementation("org.testcontainers:localstack:1.15.2")
     testImplementation("software.amazon.awssdk:cloudformation:2.15.71")
     testImplementation("software.amazon.awssdk:dynamodb:2.15.71")
     testImplementation("software.amazon.awssdk:s3:2.15.71")
