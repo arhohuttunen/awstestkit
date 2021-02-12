@@ -608,15 +608,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="title">Using the S3 extension</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">S3</span><span class="o">)</span>
-<span class="nd">@S3Setup</span><span class="o">(</span>
-        <span class="n">bucketNames</span> <span class="o">=</span> <span class="s">"com.github.awstestkit.bucket"</span><span class="o">,</span>
-        <span class="n">objects</span> <span class="o">=</span> <span class="o">{</span>
-                <span class="nd">@S3Object</span><span class="o">(</span>
-                        <span class="n">bucketName</span> <span class="o">=</span> <span class="s">"com.github.awstestkit.bucket"</span><span class="o">,</span>
-                        <span class="n">key</span> <span class="o">=</span> <span class="s">"/path/to/file"</span><span class="o">,</span>
-                        <span class="n">content</span> <span class="o">=</span> <span class="s">"content"</span>
-                <span class="o">)</span>
-        <span class="o">}</span>
+<span class="nd">@S3Test</span>
+<span class="nd">@S3Bucket</span><span class="o">(</span><span class="s">"com.github.awstestkit.bucket"</span><span class="o">)</span>
+<span class="nd">@S3Objects</span><span class="o">(</span>
+        <span class="nd">@S3Object</span><span class="o">(</span>
+                <span class="n">bucketName</span> <span class="o">=</span> <span class="s">"com.github.awstestkit.bucket"</span><span class="o">,</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="s">"/path/to/file"</span><span class="o">,</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="s">"content"</span>
+        <span class="o">)</span>
 <span class="o">)</span>
 <span class="kd">class</span> <span class="nc">S3ExtensionTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
@@ -691,7 +690,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-12 05:39:00 UTC
+Last updated 2021-02-12 05:54:03 UTC
 </div>
 </div>
 <style>

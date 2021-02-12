@@ -1,5 +1,6 @@
 09fd9e8ad8ef2d095f9d95507c8bba02  documentation/src/test/java/example/DynamoDbExtensionTest.java
 0a38f29e79a90037d896204c64d0c08b  documentation/src/test/java/example/LocalStackExtensionTest.java
+2d1bb18ab9c4fbe49aa62625ab5acd99  documentation/src/test/java/example/S3ExtensionTest.java
 45929af1e9282f5d00bfe72deafef531  documentation/src/test/java/example/CloudFormationExtensionTest.java
 4777bd99ba7dd882fe6550fb4eb4b80c  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 5c040f3c173c4e847008a05bda972f30  documentation/src/test/java/example/SnsExtensionTest.java
@@ -17,4 +18,3 @@ ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
 de23fa03dfc1e6e86237ba560ca28cbd  documentation/src/docs/asciidoc/sqs.adoc
 e491d79c8a8b94644a1a1674d6fa3fd2  documentation/build.gradle.kts
 eea2465e4cd55b77b07ac29e19dffdfe  documentation/src/docs/asciidoc/dynamodb.adoc
-fc88228e0a3567a88dedcc9e5830c8dd  documentation/src/test/java/example/S3ExtensionTest.java
