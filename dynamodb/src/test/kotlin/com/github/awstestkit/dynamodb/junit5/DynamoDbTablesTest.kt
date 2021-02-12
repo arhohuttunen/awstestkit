@@ -10,14 +10,15 @@ import software.amazon.awssdk.services.dynamodb.model.KeyType
 import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType
 
 @LocalStackTest(LocalStackContainer.Service.DYNAMODB)
-@DynamoDbSetup(tables = [
+@DynamoDbTest
+@DynamoDbTables(
     DynamoDbTable(
         tableName = "test-table",
         keySchema = [DynamoDbKeySchemaElement("id", KeyType.HASH)],
         attributeDefinitions = [DynamoDbAttributeDefinition("id", ScalarAttributeType.S)]
     )
-])
-class DynamoDbSetupTest {
+)
+class DynamoDbTablesTest {
     @Test
     fun `tables are created from class annotations`(@AwsClient dynamoDbClient: DynamoDbClient) {
         val tables = dynamoDbClient.listTables()
@@ -25,13 +26,11 @@ class DynamoDbSetupTest {
     }
 
     @Test
-    @DynamoDbSetup(tables = [
-        DynamoDbTable(
-            tableName = "another-test-table",
-            keySchema = [DynamoDbKeySchemaElement("id", KeyType.HASH)],
-            attributeDefinitions = [DynamoDbAttributeDefinition("id", ScalarAttributeType.S)]
-        )
-    ])
+    @DynamoDbTable(
+        tableName = "another-test-table",
+        keySchema = [DynamoDbKeySchemaElement("id", KeyType.HASH)],
+        attributeDefinitions = [DynamoDbAttributeDefinition("id", ScalarAttributeType.S)]
+    )
     fun `tables are created from method annotations`(@AwsClient dynamoDbClient: DynamoDbClient) {
         val tables = dynamoDbClient.listTables()
         assertThat(tables.tableNames()).hasSize(2)

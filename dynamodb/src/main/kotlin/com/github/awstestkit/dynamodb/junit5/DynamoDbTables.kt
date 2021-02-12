@@ -1,7 +1,5 @@
 package com.github.awstestkit.dynamodb.junit5
 
-import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.jupiter.api.extension.Extensions
 import software.amazon.awssdk.services.dynamodb.model.KeyType
 import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType
 
@@ -19,7 +17,7 @@ annotation class DynamoDbAttributeDefinition(
     val attributeType: ScalarAttributeType = ScalarAttributeType.S
 )
 
-@Target(AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class DynamoDbTable(
     val tableName: String,
@@ -29,8 +27,4 @@ annotation class DynamoDbTable(
 
 @Target(AnnotationTarget.CLASS, AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
-@Extensions(
-    ExtendWith(DynamoDbSetupExtension::class),
-    ExtendWith(DynamoDbClientParameterResolver::class)
-)
-annotation class DynamoDbSetup(val tables: Array<DynamoDbTable> = [])
+annotation class DynamoDbTables(vararg val value: DynamoDbTable)

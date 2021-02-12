@@ -3,8 +3,9 @@ package example;
 import com.github.awstestkit.AwsClient;
 import com.github.awstestkit.dynamodb.junit5.DynamoDbAttributeDefinition;
 import com.github.awstestkit.dynamodb.junit5.DynamoDbKeySchemaElement;
-import com.github.awstestkit.dynamodb.junit5.DynamoDbSetup;
+import com.github.awstestkit.dynamodb.junit5.DynamoDbTables;
 import com.github.awstestkit.dynamodb.junit5.DynamoDbTable;
+import com.github.awstestkit.dynamodb.junit5.DynamoDbTest;
 import com.github.awstestkit.localstack.junit5.LocalStackTest;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.localstack.LocalStackContainer;
@@ -16,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // tag::user_guide[]
 @LocalStackTest(services = LocalStackContainer.Service.DYNAMODB)
-@DynamoDbSetup(tables = {
+@DynamoDbTest
+@DynamoDbTables(
         @DynamoDbTable(
                 tableName = "table",
                 keySchema = @DynamoDbKeySchemaElement(
@@ -28,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
                         attributeType = ScalarAttributeType.S
                 )
         )
-})
+)
 class DynamoDbExtensionTest {
     @Test
     void setupTables(@AwsClient DynamoDbClient client) {

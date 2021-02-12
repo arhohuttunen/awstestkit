@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var dynamoDbClient: SimpleDynamoDbClient
@@ -33,28 +32,40 @@ class DynamoDbSetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCa
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().tables.forEach { table ->
-                dynamoDbClient.createTable(
-                    table.tableName,
-                    table.keySchema.associateBy({ it.attributeName }, { it.keyType }),
-                    table.attributeDefinitions.associateBy({ it.attributeName}, { it.attributeType })
-                )
-            }
+        val tables = findTables(annotatedElement)
+        tables.forEach { table ->
+            dynamoDbClient.createTable(
+                table.tableName,
+                table.keySchema.associateBy({ it.attributeName }, { it.keyType }),
+                table.attributeDefinitions.associateBy({ it.attributeName}, { it.attributeType })
+            )
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().tables.forEach { table ->
-                dynamoDbClient.deleteTable(table.tableName)
-            }
+        val tables = findTables(annotatedElement)
+        tables.forEach { table ->
+            dynamoDbClient.deleteTable(table.tableName)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<DynamoDbSetup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, DynamoDbSetup::class.java)
+    private fun findTables(annotatedElement: AnnotatedElement): List<DynamoDbTable> {
+        val table = findDynamoDbTable(annotatedElement)
+        table?.apply {
+            return listOf(table)
+        }
+        return findDynamoDbTables(annotatedElement)
+    }
+
+    private fun findDynamoDbTable(annotatedElement: AnnotatedElement): DynamoDbTable? {
+        return AnnotationUtils.findAnnotation(annotatedElement, DynamoDbTable::class.java).orElse(null)
+    }
+
+    private fun findDynamoDbTables(annotatedElement: AnnotatedElement): List<DynamoDbTable> {
+        val tables = AnnotationUtils.findAnnotation(annotatedElement, DynamoDbTables::class.java)
+        if (tables.isPresent) {
+            return tables.get().value.toList()
+        }
+        return emptyList()
     }
 }
