@@ -8,7 +8,6 @@ import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.platform.commons.util.AnnotationUtils
 import software.amazon.awssdk.services.s3.S3Client
 import java.lang.reflect.AnnotatedElement
-import java.util.Optional
 
 class S3SetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
     private lateinit var s3Client: SimpleS3Client
@@ -33,30 +32,50 @@ class S3SetupExtension : BeforeAllCallback, AfterAllCallback, BeforeEachCallback
     }
 
     private fun createResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().bucketNames.forEach {
-                s3Client.createBucket(it)
-            }
-            annotation.get().objects.forEach {
-                s3Client.putObject(it.bucketName, it.key, it.content)
-            }
+        val buckets = findBuckets(annotatedElement)
+        buckets.forEach {
+            s3Client.createBucket(it)
+        }
+        val objects = findObjects(annotatedElement)
+        objects.forEach {
+            s3Client.putObject(it.bucketName, it.key, it.content)
         }
     }
 
     private fun deleteResources(annotatedElement: AnnotatedElement) {
-        val annotation = findAnnotation(annotatedElement)
-        if (annotation.isPresent) {
-            annotation.get().objects.forEach {
-                s3Client.deleteObject(it.bucketName, it.key)
-            }
-            annotation.get().bucketNames.forEach {
-                s3Client.deleteBucket(it)
-            }
+        val objects = findObjects(annotatedElement)
+        objects.forEach {
+            s3Client.deleteObject(it.bucketName, it.key)
+        }
+        val buckets = findBuckets(annotatedElement)
+        buckets.forEach {
+            s3Client.deleteBucket(it)
         }
     }
 
-    private fun findAnnotation(annotatedElement: AnnotatedElement): Optional<S3Setup> {
-        return AnnotationUtils.findAnnotation(annotatedElement, S3Setup::class.java)
+    private fun findBuckets(annotatedElement: AnnotatedElement): List<String> {
+        return AnnotationUtils.findAnnotation(annotatedElement, S3Bucket::class.java)
+            .map { it.value.toList() }
+            .orElseGet { emptyList() }
+    }
+
+    private fun findObjects(annotatedElement: AnnotatedElement): List<S3Object> {
+        val obj = findDynamoDbTable(annotatedElement)
+        obj?.apply {
+            return listOf(obj)
+        }
+        return findDynamoDbTables(annotatedElement)
+    }
+
+    private fun findDynamoDbTable(annotatedElement: AnnotatedElement): S3Object? {
+        return AnnotationUtils.findAnnotation(annotatedElement, S3Object::class.java).orElse(null)
+    }
+
+    private fun findDynamoDbTables(annotatedElement: AnnotatedElement): List<S3Object> {
+        val objects = AnnotationUtils.findAnnotation(annotatedElement, S3Objects::class.java)
+        if (objects.isPresent) {
+            return objects.get().value.toList()
+        }
+        return emptyList()
     }
 }
