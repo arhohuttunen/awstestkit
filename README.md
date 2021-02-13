@@ -6,6 +6,19 @@
 
 Programmer-friendly testing library for working with AWS SDK.
 
+An example of ease-of-use with LocalStack and Testcontainers:
+
+```java
+@LocalStackTest
+@SnsTest
+class LocalStackExtensionTest {
+    @Test
+    void localStackIsRunning(@AwsClient SnsClient client) {
+        assertIterableEquals(client.listTopics().topics(), emptyList());
+    }
+}
+```
+
 ## Documentation
 
 [User Guide]
