@@ -447,41 +447,75 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#localstack">1. LocalStack Extension</a></li>
-<li><a href="#custom-endpoint">2. Custom Endpoint</a></li>
-<li><a href="#cloudformation">3. CloudFormation Extension</a></li>
-<li><a href="#dynamodb">4. DynamoDB Extension</a></li>
-<li><a href="#s3">5. S3 Extension</a></li>
-<li><a href="#secretsmanager">6. SecretsManager Extension</a></li>
-<li><a href="#sns">7. SNS Extension</a></li>
-<li><a href="#sqs">8. SQS Extension</a></li>
+<li><a href="#overview">1. Overview</a></li>
+<li><a href="#configuration">2. Configuration</a></li>
+<li><a href="#localstack">3. LocalStack Extension</a></li>
+<li><a href="#cloudformation">4. CloudFormation Extension</a></li>
+<li><a href="#dynamodb">5. DynamoDB Extension</a></li>
+<li><a href="#s3">6. S3 Extension</a></li>
+<li><a href="#secretsmanager">7. SecretsManager Extension</a></li>
+<li><a href="#sns">8. SNS Extension</a></li>
+<li><a href="#sqs">9. SQS Extension</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="localstack">1. LocalStack Extension</h2>
+<h2 id="overview">1. Overview</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="title">Using the LocalStack extension</div>
-<div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SNS</span><span class="o">)</span>
-<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">SnsClientParameterResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="kd">class</span> <span class="nc">LocalStackExtensionTest</span> <span class="o">{</span>
-    <span class="nd">@Test</span>
-    <span class="kt">void</span> <span class="nf">localStackIsRunning</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">assertIterableEquals</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">listTopics</span><span class="o">().</span><span class="na">topics</span><span class="o">(),</span> <span class="n">emptyList</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span></code></pre>
+<div class="paragraph">
+<p>AWS TestKit provides a set of JUnit 5 extensions to make testing with AWS SDK easier. AWS TestKit works with service mocks provided by tools like LocalStack, DynamoDB Local, or even real AWS services.</p>
 </div>
+<div class="paragraph">
+<p>At the moment only AWS Java SDK v2 is supported but support for AWS Java SDK v1 is planned.</p>
+</div>
+<div class="paragraph">
+<p>Currently the following services are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CloudFormation</p>
+</li>
+<li>
+<p>DynamoDB</p>
+</li>
+<li>
+<p>Firehose</p>
+</li>
+<li>
+<p>Kinesis</p>
+</li>
+<li>
+<p>KMS</p>
+</li>
+<li>
+<p>S3</p>
+</li>
+<li>
+<p>SecretsManager</p>
+</li>
+<li>
+<p>SES</p>
+</li>
+<li>
+<p>SNS</p>
+</li>
+<li>
+<p>SQS</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="custom-endpoint">2. Custom Endpoint</h2>
+<h2 id="configuration">2. Configuration</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>AWS TestKit provides an endpoint resolver mechanism to resolve endpoint configuration values for the AWS SDK clients. To provide values for configuration you need to implement an <code>EndpointResolver</code>. However, if you are using the LocalStack extension, the endpoint configuration can be omitted.</p>
+</div>
 <div class="listingblock">
-<div class="title">Writing your custom endpoint resolver</div>
+<div class="title">Providing endpoint configuration as environment variables</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">com.github.awstestkit.Endpoint</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.github.awstestkit.EndpointResolver</span><span class="o">;</span>
@@ -524,20 +558,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The endpoint resolver has to be added to the test using the <code>@AwsEndpoint</code> annotation. To inject AWS SDK clients to the test you can use the <code>@AwsClient</code> annotation.</p>
+</div>
 <div class="listingblock">
 <div class="title">Configuring your custom endpoint</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">com.github.awstestkit.AwsClient</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.github.awstestkit.AwsEndpoint</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.github.awstestkit.sns.junit5.SnsClientParameterResolver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.github.awstestkit.sns.junit5.SnsTest</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.junit.jupiter.api.extension.ExtendWith</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">software.amazon.awssdk.services.sns.SnsClient</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Collections</span><span class="o">.</span><span class="na">emptyList</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Assertions</span><span class="o">.</span><span class="na">assertIterableEquals</span><span class="o">;</span>
 
-<span class="nd">@ExtendWith</span><span class="o">(</span><span class="nc">SnsClientParameterResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@SnsTest</span>
 <span class="nd">@AwsEndpoint</span><span class="o">(</span><span class="n">endpointResolver</span> <span class="o">=</span> <span class="nc">MyEndpointResolver</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
 <span class="kd">class</span> <span class="nc">CustomEndpointTest</span> <span class="o">{</span>
     <span class="nd">@Test</span>
@@ -547,15 +583,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>The client injection only works if you have annotated the test with one of service test annotations such as <code>@SnsTest</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="cloudformation">3. CloudFormation Extension</h2>
+<h2 id="localstack">3. LocalStack Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Using the <code>@LocalStackTest</code> annotation will start up LocalStack using Testcontainers for your tests. You can pass the required <code>services</code> as an argument.</p>
+</div>
+<div class="paragraph">
+<p>If any of the service extensions (e.g. <code>@DynamoDbTest</code>, <code>@SnsTest</code>) has been provided, then the <code>services</code> argument can be omitted.</p>
+</div>
+<div class="listingblock">
+<div class="title">Using the LocalStack extension</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
+<span class="nd">@SnsTest</span>
+<span class="kd">class</span> <span class="nc">LocalStackExtensionTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">localStackIsRunning</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">assertIterableEquals</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">listTopics</span><span class="o">().</span><span class="na">topics</span><span class="o">(),</span> <span class="n">emptyList</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t need to configure an endpoint resolver when using the LocalStack extension. The extension will automatically configure an <code>LocalStackEndpointResolver</code> that works with the LocalStack container it starts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloudformation">4. CloudFormation Extension</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The CloudFormation extension allows you to create CloudFormation stacks inside your tests. If you already have your infrastructure described as CloudFormation templates you can then reuse some of those templates in your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the CloudFormation extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">CLOUDFORMATION</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@CloudFormationTest</span>
 <span class="nd">@CfnStacks</span><span class="o">(</span>
         <span class="nd">@CfnStack</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"awstestkit-stack"</span><span class="o">,</span> <span class="n">templateFile</span> <span class="o">=</span> <span class="s">"src/test/resources/template.yml"</span><span class="o">)</span>
@@ -571,12 +640,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="dynamodb">4. DynamoDB Extension</h2>
+<h2 id="dynamodb">5. DynamoDB Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The DynamoDB extension allows you to create DynamoDB tables inside your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the DynamoDB extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">DYNAMODB</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@DynamoDbTest</span>
 <span class="nd">@DynamoDbTables</span><span class="o">(</span>
         <span class="nd">@DynamoDbTable</span><span class="o">(</span>
@@ -602,12 +674,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="s3">5. S3 Extension</h2>
+<h2 id="s3">6. S3 Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The S3 extension allows you to create S3 buckets and objects inside your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the S3 extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">S3</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@S3Test</span>
 <span class="nd">@S3Bucket</span><span class="o">(</span><span class="s">"com.github.awstestkit.bucket"</span><span class="o">)</span>
 <span class="nd">@S3Objects</span><span class="o">(</span>
@@ -628,12 +703,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="secretsmanager">6. SecretsManager Extension</h2>
+<h2 id="secretsmanager">7. SecretsManager Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The SecretsManager extension allows you to create SecretsManager secrets your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the SecretsManager extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SECRETSMANAGER</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@SecretsManagerTest</span>
 <span class="nd">@Secrets</span><span class="o">(</span>
         <span class="nd">@Secret</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"SecretName"</span><span class="o">,</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"SecretValue"</span><span class="o">)</span>
@@ -649,12 +727,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="sns">7. SNS Extension</h2>
+<h2 id="sns">8. SNS Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The SNS extension allows you to create SNS topics inside your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the SNS extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SNS</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@SnsTest</span>
 <span class="nd">@SnsTopic</span><span class="o">(</span><span class="s">"TopicName"</span><span class="o">)</span>
 <span class="kd">class</span> <span class="nc">SnsExtensionTest</span> <span class="o">{</span>
@@ -665,15 +746,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If you need to use the ARN of a created topic, you can inject it to your test with the <code>@TopicArn</code> annotation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Resolving a topic ARN</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
+<span class="nd">@SnsTest</span>
+<span class="nd">@SnsTopic</span><span class="o">(</span><span class="s">"TopicName"</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">SnsTopicArnTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">setupTopics</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SnsClient</span> <span class="n">client</span><span class="o">,</span> <span class="nd">@TopicArn</span><span class="o">(</span><span class="s">"TopicName"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">topicArn</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">GetTopicAttributesRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">GetTopicAttributesRequest</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">topicArn</span><span class="o">(</span><span class="n">topicArn</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="n">assertTrue</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">getTopicAttributes</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">hasAttributes</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="sqs">8. SQS Extension</h2>
+<h2 id="sqs">9. SQS Extension</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The SQS extension allows you to create SQS queues inside your tests.</p>
+</div>
 <div class="listingblock">
 <div class="title">Using the SQS extension</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span><span class="o">(</span><span class="n">services</span> <span class="o">=</span> <span class="nc">LocalStackContainer</span><span class="o">.</span><span class="na">Service</span><span class="o">.</span><span class="na">SQS</span><span class="o">)</span>
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
 <span class="nd">@SqsTest</span>
 <span class="nd">@SqsQueue</span><span class="o">(</span><span class="s">"QueueName"</span><span class="o">)</span>
 <span class="kd">class</span> <span class="nc">SqsExtensionTest</span> <span class="o">{</span>
@@ -684,13 +788,33 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span class="o">}</span></code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>If you need to use the URL of a created queue, you can inject it to your test with the <code>@QueueUrl</code> annotation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Resolving a queue URL</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="nd">@LocalStackTest</span>
+<span class="nd">@SqsTest</span>
+<span class="nd">@SqsQueue</span><span class="o">(</span><span class="s">"QueueName"</span><span class="o">)</span>
+<span class="kd">class</span> <span class="nc">SqsQueueUrlTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">setupQueues</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SqsClient</span> <span class="n">client</span><span class="o">,</span> <span class="nd">@QueueUrl</span><span class="o">(</span><span class="s">"QueueName"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">queueUrl</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">GetQueueAttributesRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">GetQueueAttributesRequest</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">queueUrl</span><span class="o">(</span><span class="n">queueUrl</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="n">assertFalse</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">getQueueAttributes</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">attributes</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-12 07:01:42 UTC
+Last updated 2021-02-13 08:24:43 UTC
 </div>
 </div>
 <style>
