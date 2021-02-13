@@ -4,7 +4,7 @@
 
 # AWS TestKit
 
-Programmer-friendly testing library for working with AWS SDK.
+AWS TestKit is a programmer-friendly testing library for working with AWS SDK.
 
 An example of ease-of-use with LocalStack and Testcontainers:
 
