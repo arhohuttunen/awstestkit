@@ -1,0 +1,19 @@
+[[overview]]
+== Overview
+
+AWS TestKit provides a set of JUnit 5 extensions to make testing with AWS SDK easier. AWS TestKit works with service mocks provided by tools like LocalStack, DynamoDB Local, or even real AWS services.
+
+At the moment only AWS Java SDK v2 is supported but support for AWS Java SDK v1 is planned.
+
+Currently the following services are supported:
+
+- CloudFormation
+- DynamoDB
+- Firehose
+- Kinesis
+- KMS
+- S3
+- SecretsManager
+- SES
+- SNS
+- SQS

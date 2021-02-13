@@ -1,8 +1,18 @@
 [[sns]]
 == SNS Extension
 
+The SNS extension allows you to create SNS topics inside your tests.
+
 [source,java]
 .Using the SNS extension
 ----
 include::{testDir}/example/SnsExtensionTest.java[tags=user_guide]
+----
+
+If you need to use the ARN of a created topic, you can inject it to your test with the `@TopicArn` annotation.
+
+[source,java]
+.Resolving a topic ARN
+----
+include::{testDir}/example/SnsTopicArnTest.java[tags=user_guide]
 ----

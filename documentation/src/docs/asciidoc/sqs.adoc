@@ -1,8 +1,18 @@
 [[sqs]]
 == SQS Extension
 
+The SQS extension allows you to create SQS queues inside your tests.
+
 [source,java]
 .Using the SQS extension
 ----
 include::{testDir}/example/SqsExtensionTest.java[tags=user_guide]
+----
+
+If you need to use the URL of a created queue, you can inject it to your test with the `@QueueUrl` annotation.
+
+[source,java]
+.Resolving a queue URL
+----
+include::{testDir}/example/SqsQueueUrlTest.java[tags=user_guide]
 ----

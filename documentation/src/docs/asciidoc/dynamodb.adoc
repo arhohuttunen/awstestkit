@@ -1,6 +1,8 @@
 [[dynamodb]]
 == DynamoDB Extension
 
+The DynamoDB extension allows you to create DynamoDB tables inside your tests.
+
 [source,java]
 .Using the DynamoDB extension
 ----

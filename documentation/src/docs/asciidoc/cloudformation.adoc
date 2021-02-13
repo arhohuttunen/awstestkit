@@ -1,6 +1,8 @@
 [[cloudformation]]
 == CloudFormation Extension
 
+The CloudFormation extension allows you to create CloudFormation stacks inside your tests. If you already have your infrastructure described as CloudFormation templates you can then reuse some of those templates in your tests.
+
 [source,java]
 .Using the CloudFormation extension
 ----

@@ -1,8 +1,14 @@
 [[localstack]]
 == LocalStack Extension
 
+Using the `@LocalStackTest` annotation will start up LocalStack using Testcontainers for your tests. You can pass the required `services` as an argument.
+
+If any of the service extensions (e.g. `@DynamoDbTest`, `@SnsTest`) has been provided, then the `services` argument can be omitted.
+
 [source,java]
 .Using the LocalStack extension
 ----
 include::{testDir}/example/LocalStackExtensionTest.java[tags=user_guide]
 ----
+
+You don't need to configure an endpoint resolver when using the LocalStack extension. The extension will automatically configure an `LocalStackEndpointResolver` that works with the LocalStack container it starts.

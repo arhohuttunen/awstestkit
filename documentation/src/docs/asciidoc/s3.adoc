@@ -1,6 +1,8 @@
 [[s3]]
 == S3 Extension
 
+The S3 extension allows you to create S3 buckets and objects inside your tests.
+
 [source,java]
 .Using the S3 extension
 ----

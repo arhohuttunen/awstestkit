@@ -1,0 +1,20 @@
+[[configuration]]
+== Configuration
+
+AWS TestKit provides an endpoint resolver mechanism to resolve endpoint configuration values for the AWS SDK clients. To provide values for configuration you need to implement an `EndpointResolver`. However, if you are using the LocalStack extension, the endpoint configuration can be omitted.
+
+[source,java]
+.Providing endpoint configuration as environment variables
+----
+include::{testDir}/example/MyEndpointResolver.java[tags=user_guide]
+----
+
+The endpoint resolver has to be added to the test using the `@AwsEndpoint` annotation. To inject AWS SDK clients to the test you can use the `@AwsClient` annotation.
+
+[source,java]
+.Configuring your custom endpoint
+----
+include::{testDir}/example/CustomEndpointTest.java[tags=user_guide]
+----
+
+The client injection only works if you have annotated the test with one of service test annotations such as `@SnsTest`.
