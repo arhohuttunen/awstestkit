@@ -6,13 +6,12 @@ import com.github.awstestkit.secretsmanager.junit5.Secret;
 import com.github.awstestkit.secretsmanager.junit5.Secrets;
 import com.github.awstestkit.secretsmanager.junit5.SecretsManagerTest;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.localstack.LocalStackContainer;
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // tag::user_guide[]
-@LocalStackTest(services = LocalStackContainer.Service.SECRETSMANAGER)
+@LocalStackTest
 @SecretsManagerTest
 @Secrets(
         @Secret(name = "SecretName", value = "SecretValue")

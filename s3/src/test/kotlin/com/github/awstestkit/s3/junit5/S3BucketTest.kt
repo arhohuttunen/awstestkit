@@ -4,10 +4,9 @@ import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.s3.S3Client
 
-@LocalStackTest(LocalStackContainer.Service.S3)
+@LocalStackTest
 @S3Test
 @S3Bucket("test-bucket")
 @S3Objects(

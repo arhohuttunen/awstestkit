@@ -4,10 +4,9 @@ import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 
-@LocalStackTest(LocalStackContainer.Service.SECRETSMANAGER)
+@LocalStackTest
 @SecretsManagerTest
 @Secrets(Secret(name = "SecretName", value = "SecretValue"))
 class SecretsTest {

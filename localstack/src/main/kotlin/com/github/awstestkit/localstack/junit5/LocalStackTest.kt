@@ -9,4 +9,4 @@ import org.testcontainers.containers.localstack.LocalStackContainer
 @Retention(AnnotationRetention.RUNTIME)
 @Extensions(ExtendWith(LocalStackExtension::class))
 @AwsEndpoint(LocalStackEndpointResolver::class)
-annotation class LocalStackTest(vararg val services: LocalStackContainer.Service)
+annotation class LocalStackTest(vararg val services: LocalStackContainer.Service = [])

@@ -7,13 +7,12 @@ import com.github.awstestkit.s3.junit5.S3Object;
 import com.github.awstestkit.s3.junit5.S3Objects;
 import com.github.awstestkit.s3.junit5.S3Test;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.localstack.LocalStackContainer;
 import software.amazon.awssdk.services.s3.S3Client;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // tag::user_guide[]
-@LocalStackTest(services = LocalStackContainer.Service.S3)
+@LocalStackTest
 @S3Test
 @S3Bucket("com.github.awstestkit.bucket")
 @S3Objects(

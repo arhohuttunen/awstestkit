@@ -5,13 +5,12 @@ import com.github.awstestkit.localstack.junit5.LocalStackTest;
 import com.github.awstestkit.sqs.junit5.SqsQueue;
 import com.github.awstestkit.sqs.junit5.SqsTest;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.localstack.LocalStackContainer;
 import software.amazon.awssdk.services.sqs.SqsClient;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // tag::user_guide[]
-@LocalStackTest(services = LocalStackContainer.Service.SQS)
+@LocalStackTest
 @SqsTest
 @SqsQueue("QueueName")
 class SqsExtensionTest {

@@ -4,12 +4,11 @@ import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.testcontainers.containers.localstack.LocalStackContainer
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.KeyType
 import software.amazon.awssdk.services.dynamodb.model.ScalarAttributeType
 
-@LocalStackTest(LocalStackContainer.Service.DYNAMODB)
+@LocalStackTest
 @DynamoDbTest
 @DynamoDbTables(
     DynamoDbTable(
