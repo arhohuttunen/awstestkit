@@ -464,13 +464,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="overview">1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AWS TestKit provides a set of JUnit 5 extensions to make testing with AWS SDK easier. AWS TestKit works with service mocks provided by tools like LocalStack, DynamoDB Local, or even real AWS services.</p>
+<p>AWS TestKit provides a set of JUnit 5 extensions to make testing with AWS SDK easier. AWS TestKit works with service mocks provided by tools like <a href="https://github.com/localstack/localstack">LocalStack</a>, <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html">DynamoDB Local</a>, or even real AWS services.</p>
 </div>
 <div class="paragraph">
-<p>At the moment only AWS Java SDK v2 is supported but support for AWS Java SDK v1 is planned.</p>
+<p>At the moment only <a href="https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html">AWS SDK for Java 2.x</a> is supported but support for AWS Java SDK v1 is planned.</p>
 </div>
 <div class="paragraph">
-<p>Currently the following services are supported:</p>
+<p>Currently, the following services are supported:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -592,7 +592,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="localstack">3. LocalStack Extension</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using the <code>@LocalStackTest</code> annotation will start up LocalStack using Testcontainers for your tests. You can pass the required <code>services</code> as an argument.</p>
+<p>Using the <code>@LocalStackTest</code> annotation will start up <a href="https://github.com/localstack/localstack">LocalStack</a> using <a href="https://www.testcontainers.org/modules/localstack/">Testcontainers</a> for your tests. You can pass the required <code>services</code> as an argument.</p>
 </div>
 <div class="paragraph">
 <p>If any of the service extensions (e.g. <code>@DynamoDbTest</code>, <code>@SnsTest</code>) has been provided, then the <code>services</code> argument can be omitted.</p>
@@ -814,7 +814,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2021-02-13 08:24:43 UTC
+Last updated 2021-02-13 08:39:22 UTC
 </div>
 </div>
 <style>
