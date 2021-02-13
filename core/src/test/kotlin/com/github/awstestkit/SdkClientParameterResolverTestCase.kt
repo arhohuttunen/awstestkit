@@ -3,12 +3,8 @@ package com.github.awstestkit
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider
-import software.amazon.awssdk.awscore.client.builder.AwsClientBuilder
+import org.junit.jupiter.api.extension.ExtensionContext
 import software.amazon.awssdk.core.SdkClient
-import software.amazon.awssdk.core.client.config.ClientOverrideConfiguration
-import software.amazon.awssdk.regions.Region
-import java.net.URI
 import kotlin.reflect.KClass
 
 @TestKitTestCase
@@ -35,22 +31,13 @@ class SdkClientParameterResolverTestCase {
         override fun serviceName(): String = "DummyService"
     }
 
-    class DummyClientBuilder : AwsClientBuilder<DummyClientBuilder, DummyClient> {
-        override fun build(): DummyClient {
-            return DummyClient()
+    class DummyClientParameterResolver : SdkClientParameterResolver() {
+        override fun isSupported(type: KClass<out Any>): Boolean {
+            return type == DummyClient::class
         }
 
-        override fun overrideConfiguration(overrideConfiguration: ClientOverrideConfiguration): DummyClientBuilder =
-            this
-
-        override fun endpointOverride(endpointOverride: URI): DummyClientBuilder = this
-        override fun credentialsProvider(credentialsProvider: AwsCredentialsProvider): DummyClientBuilder = this
-        override fun region(region: Region): DummyClientBuilder = this
-    }
-
-    class DummyClientParameterResolver : SdkClientParameterResolver() {
-        override val factories: Map<KClass<out SdkClient>, AwsClientFactory<*, out SdkClient>> = mapOf(
-            DummyClient::class to AwsClientFactory(DummyClientBuilder())
-        )
+        override fun create(type: KClass<out Any>, extensionContext: ExtensionContext): SdkClient {
+            return DummyClient()
+        }
     }
 }
