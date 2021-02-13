@@ -13,11 +13,16 @@ allprojects {
         mavenCentral()
         jcenter()
     }
+
+    apply<JacocoPlugin>()
+
+    configure<JacocoPluginExtension> {
+        toolVersion = "0.8.6"
+    }
 }
 
 subprojects {
     apply<DetektPlugin>()
-    apply<JacocoPlugin>()
 
     tasks {
         withType<KotlinCompile> {
@@ -30,23 +35,20 @@ subprojects {
     }
 }
 
-jacoco {
-    toolVersion = "0.8.6"
-}
-
-tasks {
-    jacocoTestReport {
-        executionData.setFrom(fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec"))
-
-        subprojects
-            .forEach {
-                this@jacocoTestReport.sourceSets(it.sourceSets.main.get())
-                this@jacocoTestReport.dependsOn(it.tasks.test)
+tasks.register<JacocoReport>("codeCoverageReport") {
+    subprojects {
+        val subproject = this
+        subproject.plugins.withType<JacocoPlugin>().configureEach {
+            subproject.tasks.matching { it.extensions.findByType<JacocoTaskExtension>() != null }.configureEach {
+                val testTask = this
+                sourceSets(subproject.sourceSets.main.get())
+                executionData(testTask)
             }
-
-        reports {
-            xml.isEnabled = true
-            xml.destination = file("$buildDir/reports/jacoco/report.xml")
         }
+    }
+
+    reports {
+        xml.isEnabled = true
+        html.isEnabled = true
     }
 }

@@ -27,7 +27,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Generate coverage report
-        run: ./gradlew jacocoTestReport -Dorg.gradle.caching=false
+        run: ./gradlew test codeCoverageReport -Dorg.gradle.caching=false
 
       - name: Publish Coverage
         if: success()
