@@ -5,7 +5,7 @@ AWS TestKit provides a set of JUnit 5 extensions to make testing with AWS SDK ea
 
 At the moment only https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html[AWS SDK for Java 2.x] is supported but support for AWS Java SDK v1 is planned.
 
-Currently the following services are supported:
+Currently, the following services are supported:
 
 - CloudFormation
 - DynamoDB
