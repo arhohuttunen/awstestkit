@@ -1,7 +1,7 @@
 package com.github.awstestkit.ses.junit5
 
 import com.github.awstestkit.AwsClient
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import software.amazon.awssdk.services.ses.SesAsyncClient
@@ -11,11 +11,11 @@ import software.amazon.awssdk.services.ses.SesClient
 class SesClientParameterResolverTest {
     @Test
     fun `resolve SES client as an argument`(@AwsClient sesClient: SesClient) {
-        Assertions.assertThat(sesClient).isNotNull()
+        assertThat(sesClient).isNotNull()
     }
 
     @Test
     fun `resolve SES async client as an argument`(@AwsClient sesAsyncClient: SesAsyncClient) {
-        Assertions.assertThat(sesAsyncClient).isNotNull()
+        assertThat(sesAsyncClient).isNotNull()
     }
 }
