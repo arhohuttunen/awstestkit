@@ -36,8 +36,7 @@ subprojects {
 }
 
 tasks.register<JacocoReport>("codeCoverageReport") {
-    subprojects {
-        val subproject = this
+    subprojects.filter { it != project(":documentation") }.forEach { subproject ->
         subproject.plugins.withType<JacocoPlugin>().configureEach {
             subproject.tasks.matching { it.extensions.findByType<JacocoTaskExtension>() != null }.configureEach {
                 val testTask = this
