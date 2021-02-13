@@ -1,7 +1,7 @@
 [[localstack]]
 == LocalStack Extension
 
-Using the `@LocalStackTest` annotation will start up LocalStack using Testcontainers for your tests. You can pass the required `services` as an argument.
+Using the `@LocalStackTest` annotation will start up https://github.com/localstack/localstack[LocalStack] using https://www.testcontainers.org/modules/localstack/[Testcontainers] for your tests. You can pass the required `services` as an argument.
 
 If any of the service extensions (e.g. `@DynamoDbTest`, `@SnsTest`) has been provided, then the `services` argument can be omitted.
 
