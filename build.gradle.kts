@@ -58,6 +58,7 @@ tasks.register<JacocoReport>("codeCoverageReport") {
 
     reports {
         xml.isEnabled = true
-        html.isEnabled = true
+        xml.destination = file("${buildDir}/reports/jacoco/report.xml")
+        html.isEnabled = false
     }
 }
