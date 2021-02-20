@@ -10,5 +10,5 @@ dependencies {
     implementation("software.amazon.awssdk:sns:2.16.2")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.15.2")
-    testImplementation("org.assertj:assertj-core:3.19.0")
+    testImplementation("io.kotest:kotest-assertions-core:4.4.1")
 }

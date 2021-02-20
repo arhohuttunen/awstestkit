@@ -2,7 +2,8 @@ package com.github.awstestkit.s3.junit5
 
 import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import org.junit.jupiter.api.Test
 import software.amazon.awssdk.services.s3.S3Client
 
@@ -16,7 +17,7 @@ class S3BucketTest {
     @Test
     fun `buckets and objects are created from class annotations`(@AwsClient s3Client: S3Client) {
         val response = s3Client.listBuckets()
-        assertThat(response.buckets()).isNotEmpty()
+        response.buckets().shouldNotBeEmpty()
     }
 
     @Test
@@ -24,6 +25,6 @@ class S3BucketTest {
     @S3Object("another-bucket", "file.txt", "contents")
     fun `buckets and objects are created from method annotations`(@AwsClient s3Client: S3Client) {
         val response = s3Client.listBuckets()
-        assertThat(response.buckets()).hasSize(2)
+        response.buckets().shouldHaveSize(2)
     }
 }

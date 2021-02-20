@@ -1,7 +1,7 @@
 package com.github.awstestkit.secretsmanager.junit5
 
 import com.github.awstestkit.AwsClient
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import software.amazon.awssdk.services.secretsmanager.SecretsManagerAsyncClient
@@ -11,11 +11,11 @@ import software.amazon.awssdk.services.secretsmanager.SecretsManagerClient
 class SecretsManagerClientParameterResolverTest {
     @Test
     fun `resolve SecretsManager client as an argument`(@AwsClient client: SecretsManagerClient) {
-        assertThat(client).isNotNull()
+        client shouldNotBe null
     }
 
     @Test
     fun `resolve SecretsManager async client as an argument`(@AwsClient client: SecretsManagerAsyncClient) {
-        assertThat(client).isNotNull()
+        client shouldNotBe null
     }
 }

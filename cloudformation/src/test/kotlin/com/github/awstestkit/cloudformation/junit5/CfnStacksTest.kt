@@ -2,7 +2,8 @@ package com.github.awstestkit.cloudformation.junit5
 
 import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import org.junit.jupiter.api.Test
 import software.amazon.awssdk.services.cloudformation.CloudFormationClient
 
@@ -15,13 +16,13 @@ class CfnStacksTest {
     @Test
     fun `stacks are created from class annotations`(@AwsClient cloudFormationClient: CloudFormationClient) {
         val response = cloudFormationClient.describeStacks()
-        assertThat(response.stacks()).isNotEmpty()
+        response.stacks().shouldNotBeEmpty()
     }
 
     @Test
     @CfnStack("second-stack", "src/test/resources/template.yml")
     fun `stacks are created from method annotations`(@AwsClient cloudFormationClient: CloudFormationClient) {
         val response = cloudFormationClient.describeStacks()
-        assertThat(response.stacks()).hasSize(2)
+        response.stacks().shouldHaveSize(2)
     }
 }

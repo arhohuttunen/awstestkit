@@ -1,5 +1,7 @@
 package com.github.awstestkit
 
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -13,17 +15,17 @@ class SdkClientParameterResolverTestCase {
 
     @Test
     fun resolveClientParameterSuccessfully(@AwsClient annotatedClient: DummyClient) {
-        assertThat(annotatedClient).isNotNull()
+        annotatedClient shouldNotBe null
     }
 
     @Test
     fun failWhenClientNotAnnotated(unannotatedClient: DummyClient) {
-        assertThat(unannotatedClient).isNull()
+        unannotatedClient shouldBe null
     }
 
     @Test
     fun failWithUnsupportedClients(@AwsClient unsupportedClient: String) {
-        assertThat(unsupportedClient).isNull()
+        unsupportedClient shouldBe null
     }
 
     class DummyClient : SdkClient {

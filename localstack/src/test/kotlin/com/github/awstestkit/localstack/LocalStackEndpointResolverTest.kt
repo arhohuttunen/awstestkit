@@ -1,8 +1,8 @@
 package com.github.awstestkit.localstack
 
 import com.github.awstestkit.localstack.junit5.LocalStackEndpointResolver
+import io.kotest.assertions.throwables.shouldThrow
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.ExtensionContext
@@ -18,7 +18,7 @@ class LocalStackEndpointResolverTest {
     class ResolverExtension : BeforeEachCallback {
         override fun beforeEach(context: ExtensionContext) {
             val endpointResolver = LocalStackEndpointResolver()
-            assertThrows<ExtensionContextException> { endpointResolver.resolveEndpoint(context) }
+            shouldThrow<ExtensionContextException> { endpointResolver.resolveEndpoint(context) }
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.github.awstestkit.firehose.junit5
 
 import com.github.awstestkit.AwsClient
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldNotBe
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import software.amazon.awssdk.services.firehose.FirehoseClient
@@ -10,11 +10,11 @@ import software.amazon.awssdk.services.firehose.FirehoseClient
 class FirehoseClientParameterResolverTest {
     @Test
     fun `resolve Firehose client as an argument`(@AwsClient client: FirehoseClient) {
-        assertThat(client).isNotNull()
+        client shouldNotBe null
     }
 
     @Test
     fun `resolve Firehose async client as an argument`(@AwsClient client: FirehoseClient) {
-        assertThat(client).isNotNull()
+        client shouldNotBe null
     }
 }

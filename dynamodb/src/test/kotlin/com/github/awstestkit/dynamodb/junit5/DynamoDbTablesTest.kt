@@ -2,7 +2,8 @@ package com.github.awstestkit.dynamodb.junit5
 
 import com.github.awstestkit.AwsClient
 import com.github.awstestkit.localstack.junit5.LocalStackTest
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import org.junit.jupiter.api.Test
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import software.amazon.awssdk.services.dynamodb.model.KeyType
@@ -21,7 +22,7 @@ class DynamoDbTablesTest {
     @Test
     fun `tables are created from class annotations`(@AwsClient dynamoDbClient: DynamoDbClient) {
         val tables = dynamoDbClient.listTables()
-        assertThat(tables.tableNames()).isNotEmpty()
+        tables.tableNames().shouldNotBeEmpty()
     }
 
     @Test
@@ -32,6 +33,6 @@ class DynamoDbTablesTest {
     )
     fun `tables are created from method annotations`(@AwsClient dynamoDbClient: DynamoDbClient) {
         val tables = dynamoDbClient.listTables()
-        assertThat(tables.tableNames()).hasSize(2)
+        tables.tableNames().shouldHaveSize(2)
     }
 }
