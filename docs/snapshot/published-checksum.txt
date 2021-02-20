@@ -13,8 +13,8 @@
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
-b50b8b7a647701561b56c146565e7e0f  documentation/build.gradle.kts
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
+bc807df9e6b1bdd2519ed633eee8f79b  documentation/build.gradle.kts
 c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensionTest.java
 ced670ab31d83eb0ce48c426023a8d96  documentation/src/docs/asciidoc/sns.adoc
 d0042570c45cb321b35a0704e78285fa  documentation/src/test/java/example/DynamoDbExtensionTest.java
