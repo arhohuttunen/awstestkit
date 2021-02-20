@@ -27,7 +27,7 @@ class SdkClientParameterResolverTestCase {
     }
 
     class DummyClient : SdkClient {
-        override fun close() {}
+        override fun close() = Unit
         override fun serviceName(): String = "DummyService"
     }
 

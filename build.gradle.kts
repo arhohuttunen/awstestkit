@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.DetektPlugin
+import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -32,6 +33,15 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+    }
+
+    detekt {
+        input = objects.fileCollection().from(
+            DetektExtension.DEFAULT_SRC_DIR_JAVA,
+            "src/test/java",
+            DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
+            "src/test/kotlin"
+        )
     }
 }
 
