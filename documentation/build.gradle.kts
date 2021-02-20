@@ -20,12 +20,12 @@ dependencies {
     testImplementation(project(":sqs"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testImplementation("org.testcontainers:localstack:1.15.2")
-    testImplementation("software.amazon.awssdk:cloudformation:2.15.71")
-    testImplementation("software.amazon.awssdk:dynamodb:2.15.71")
-    testImplementation("software.amazon.awssdk:s3:2.15.71")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.15.71")
-    testImplementation("software.amazon.awssdk:sns:2.15.71")
-    testImplementation("software.amazon.awssdk:sqs:2.15.71")
+    testImplementation("software.amazon.awssdk:cloudformation:2.16.2")
+    testImplementation("software.amazon.awssdk:dynamodb:2.16.2")
+    testImplementation("software.amazon.awssdk:s3:2.16.2")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.16.2")
+    testImplementation("software.amazon.awssdk:sns:2.16.2")
+    testImplementation("software.amazon.awssdk:sqs:2.16.2")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
