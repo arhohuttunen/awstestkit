@@ -5,7 +5,7 @@ plugins {
     java
     id("org.asciidoctor.jvm.convert") version "3.3.2"
     id("org.ajoberstar.git-publish") version "3.0.0"
-    id("com.avast.gradle.docker-compose") version "0.14.1"
+    id("com.avast.gradle.docker-compose") version "0.14.2"
     id("com.nike.pdm.localstack") version "0.1.0"
 }
 
