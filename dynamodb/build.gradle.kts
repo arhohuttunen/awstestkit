@@ -10,5 +10,5 @@ dependencies {
     implementation("software.amazon.awssdk:dynamodb:2.16.2")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.15.3")
-    testImplementation("io.kotest:kotest-assertions-core:4.5.0")
+    testImplementation("io.kotest:kotest-assertions-core:4.6.0")
 }
