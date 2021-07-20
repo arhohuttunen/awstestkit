@@ -12,8 +12,8 @@
 6f330a3972e95be5206bcb833874b762  documentation/src/test/java/example/CloudFormationExtensionTest.java
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
-a04cdebe0bbfd289074cf07e67692329  documentation/build.gradle.kts
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
+b773d23499d70802377a15ffc1064f00  documentation/build.gradle.kts
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
 c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensionTest.java
 ced670ab31d83eb0ce48c426023a8d96  documentation/src/docs/asciidoc/sns.adoc
