@@ -6,7 +6,6 @@ plugins {
     id("org.asciidoctor.jvm.convert") version "3.3.2"
     id("org.ajoberstar.git-publish") version "3.0.0"
     id("com.avast.gradle.docker-compose") version "0.14.9"
-    id("com.nike.pdm.localstack") version "1.0.0"
 }
 
 dependencies {
@@ -50,7 +49,8 @@ gitPublish {
 }
 
 dockerCompose {
-    useComposeFiles = listOf("localstack/docker-compose.yml")
+    useComposeFiles.set(listOf("localstack/docker-compose.yml"))
+    isRequiredBy(project.tasks["test"])
 }
 
 tasks {
@@ -74,8 +74,6 @@ tasks {
                 "AWS_SECRET_KEY" to "dummy"
             )
         )
-        dependsOn("startLocalStack")
-        finalizedBy("killLocalStack")
     }
 
     asciidoctor {
