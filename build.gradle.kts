@@ -28,6 +28,10 @@ subprojects {
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = "1.8"
         }
+        withType<JavaCompile> {
+            sourceCompatibility = "1.8"
+            targetCompatibility = "1.8"
+        }
     }
 
     tasks.withType<Test> {
@@ -35,7 +39,7 @@ subprojects {
     }
 
     detekt {
-        input = objects.fileCollection().from(
+        source = objects.fileCollection().from(
             DetektExtension.DEFAULT_SRC_DIR_JAVA,
             "src/test/java",
             DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
@@ -56,8 +60,8 @@ tasks.register<JacocoReport>("codeCoverageReport") {
     }
 
     reports {
-        xml.isEnabled = true
-        xml.destination = file("${buildDir}/reports/jacoco/report.xml")
-        html.isEnabled = false
+        xml.required.set(true)
+        xml.outputLocation.set(file("${buildDir}/reports/jacoco/report.xml"))
+        html.required.set(false)
     }
 }
