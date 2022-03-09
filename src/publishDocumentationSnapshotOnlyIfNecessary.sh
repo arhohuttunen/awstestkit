@@ -36,5 +36,5 @@ else
   echo "Creating and publishing documentation..."
   echo
   cp --force "${current}" "${published}"
-  ./gradlew gitPublishPush
+  ./gradlew gitPublishPush --stacktrace
 fi
