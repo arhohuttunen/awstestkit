@@ -9,6 +9,6 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.16.2")
     implementation("software.amazon.awssdk:secretsmanager:2.16.2")
     testImplementation(project(":localstack"))
-    testImplementation("org.testcontainers:localstack:1.17.0")
+    testImplementation("org.testcontainers:localstack:1.17.1")
     testImplementation("io.kotest:kotest-assertions-core:5.2.3")
 }
