@@ -1,3 +1,4 @@
+06d2a9dde98d046175bedc712f5a7653  documentation/build.gradle.kts
 0ecd5453e7049123570ec7f014d35941  documentation/src/test/java/example/LocalStackExtensionTest.java
 16e34c3d18db59f3821647060d3cdb89  documentation/src/docs/asciidoc/configuration.adoc
 1d83fe2a27eedcffd53f01487ea114e0  documentation/src/test/java/example/SqsExtensionTest.java
@@ -20,4 +21,3 @@ d0042570c45cb321b35a0704e78285fa  documentation/src/test/java/example/DynamoDbEx
 d48af4bc7b0b6586660d28d96787ab78  documentation/src/docs/asciidoc/sqs.adoc
 e7e22a6b66a15eda267528fe152cf95d  documentation/src/test/java/example/S3ExtensionTest.java
 fda08bf4e7c36e2e62afe4aa0ae17a66  documentation/src/docs/asciidoc/overview.adoc
-fdd7911fd5bafcc884e8f403de535590  documentation/build.gradle.kts
