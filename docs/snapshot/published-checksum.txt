@@ -1,4 +1,4 @@
-06d2a9dde98d046175bedc712f5a7653  documentation/build.gradle.kts
+094150a078de924d484ed0fdc1821887  documentation/build.gradle.kts
 0ecd5453e7049123570ec7f014d35941  documentation/src/test/java/example/LocalStackExtensionTest.java
 16e34c3d18db59f3821647060d3cdb89  documentation/src/docs/asciidoc/configuration.adoc
 1d83fe2a27eedcffd53f01487ea114e0  documentation/src/test/java/example/SqsExtensionTest.java
