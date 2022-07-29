@@ -19,5 +19,5 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.16.2")
     implementation("com.amazonaws:aws-java-sdk-core:1.11.958")
     implementation("org.testcontainers:localstack:1.17.3")
-    testImplementation("io.kotest:kotest-assertions-core:5.4.0")
+    testImplementation("io.kotest:kotest-assertions-core:5.4.1")
 }
