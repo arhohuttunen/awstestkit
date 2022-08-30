@@ -1,8 +1,8 @@
 0ecd5453e7049123570ec7f014d35941  documentation/src/test/java/example/LocalStackExtensionTest.java
 16e34c3d18db59f3821647060d3cdb89  documentation/src/docs/asciidoc/configuration.adoc
+1a3217079f4f66650e5fb01f2a3c1103  documentation/build.gradle.kts
 1d83fe2a27eedcffd53f01487ea114e0  documentation/src/test/java/example/SqsExtensionTest.java
 227514b8f94aa8b00a783a429ba47372  documentation/src/test/java/example/CustomEndpointTest.java
-3b143700a0a79c4869be3ba03601c68f  documentation/build.gradle.kts
 45f21c1871c1bbff0c1f2c8920064855  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 46ca977af7d9baf75a8426bd115f700a  documentation/src/docs/asciidoc/index.adoc
 4c7f111c25c2da3fd114d2600fa9a0f6  documentation/src/docs/asciidoc/secretsmanager.adoc
