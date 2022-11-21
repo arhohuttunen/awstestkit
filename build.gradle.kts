@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.7.21" apply false
     java
     jacoco
-    id("io.gitlab.arturbosch.detekt") version "1.21.0"
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
 }
 
 allprojects {
