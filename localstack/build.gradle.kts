@@ -15,7 +15,7 @@ dependencies {
     implementation(project(":sns"))
     implementation(project(":sqs"))
     implementation(kotlin("stdlib"))
-    implementation("org.junit.jupiter:junit-jupiter:5.9.1")
+    implementation("org.junit.jupiter:junit-jupiter:5.9.2")
     implementation("software.amazon.awssdk:aws-core:2.16.2")
     implementation("com.amazonaws:aws-java-sdk-core:1.11.958")
     implementation("org.testcontainers:localstack:1.17.6")
