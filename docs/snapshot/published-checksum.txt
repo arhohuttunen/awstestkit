@@ -2,6 +2,7 @@
 16e34c3d18db59f3821647060d3cdb89  documentation/src/docs/asciidoc/configuration.adoc
 1d83fe2a27eedcffd53f01487ea114e0  documentation/src/test/java/example/SqsExtensionTest.java
 227514b8f94aa8b00a783a429ba47372  documentation/src/test/java/example/CustomEndpointTest.java
+2faf6ab23dcb77a36c3c531e24b596d1  documentation/build.gradle.kts
 45f21c1871c1bbff0c1f2c8920064855  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 46ca977af7d9baf75a8426bd115f700a  documentation/src/docs/asciidoc/index.adoc
 4c7f111c25c2da3fd114d2600fa9a0f6  documentation/src/docs/asciidoc/secretsmanager.adoc
@@ -11,7 +12,6 @@
 697b18462eb81e2fe98f4ff8f7eae2b1  documentation/src/docs/asciidoc/s3.adoc
 6f330a3972e95be5206bcb833874b762  documentation/src/test/java/example/CloudFormationExtensionTest.java
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
-9dddcd52ae7814b2de3495206dfc889f  documentation/build.gradle.kts
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
