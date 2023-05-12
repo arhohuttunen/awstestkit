@@ -18,6 +18,6 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.9.3")
     implementation("software.amazon.awssdk:aws-core:2.16.2")
     implementation("com.amazonaws:aws-java-sdk-core:1.11.958")
-    implementation("org.testcontainers:localstack:1.18.0")
+    implementation("org.testcontainers:localstack:1.18.1")
     testImplementation("io.kotest:kotest-assertions-core:5.6.2")
 }
