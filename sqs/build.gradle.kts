@@ -5,7 +5,7 @@ plugins {
 dependencies {
     api(project(":core"))
     implementation(kotlin("stdlib"))
-    implementation("org.junit.jupiter:junit-jupiter:5.9.3")
+    implementation("org.junit.jupiter:junit-jupiter:5.10.0")
     implementation("software.amazon.awssdk:aws-core:2.16.2")
     implementation("software.amazon.awssdk:sqs:2.16.2")
     testImplementation(project(":localstack"))
