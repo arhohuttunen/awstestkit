@@ -15,9 +15,9 @@
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
 c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensionTest.java
+ce601c2814d39068098b2c2d27ad5a78  documentation/build.gradle.kts
 ced670ab31d83eb0ce48c426023a8d96  documentation/src/docs/asciidoc/sns.adoc
 d0042570c45cb321b35a0704e78285fa  documentation/src/test/java/example/DynamoDbExtensionTest.java
 d48af4bc7b0b6586660d28d96787ab78  documentation/src/docs/asciidoc/sqs.adoc
-d682c7e8b97cb5890355b7552e4457ab  documentation/build.gradle.kts
 e7e22a6b66a15eda267528fe152cf95d  documentation/src/test/java/example/S3ExtensionTest.java
 fda08bf4e7c36e2e62afe4aa0ae17a66  documentation/src/docs/asciidoc/overview.adoc
