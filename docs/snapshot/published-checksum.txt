@@ -4,12 +4,12 @@
 227514b8f94aa8b00a783a429ba47372  documentation/src/test/java/example/CustomEndpointTest.java
 45f21c1871c1bbff0c1f2c8920064855  documentation/src/test/java/example/SecretsManagerExtensionTest.java
 46ca977af7d9baf75a8426bd115f700a  documentation/src/docs/asciidoc/index.adoc
-4b48f1388d8d4bbce079568360c022d1  documentation/build.gradle.kts
 4c7f111c25c2da3fd114d2600fa9a0f6  documentation/src/docs/asciidoc/secretsmanager.adoc
 502c6490d0a522023762866ab5b53d01  documentation/src/test/java/example/SqsQueueUrlTest.java
 6165fb5d8bf84c88ff8fd460f4392287  documentation/src/docs/asciidoc/localstack.adoc
 660b3233cad3843e19cb9c8a0498e2e0  documentation/src/test/java/example/MyEndpointResolver.java
 697b18462eb81e2fe98f4ff8f7eae2b1  documentation/src/docs/asciidoc/s3.adoc
+6d8ef4a627f3f88d20f243e8dbe37c7b  documentation/build.gradle.kts
 6f330a3972e95be5206bcb833874b762  documentation/src/test/java/example/CloudFormationExtensionTest.java
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
