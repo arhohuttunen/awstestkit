@@ -10,5 +10,5 @@ dependencies {
     implementation("software.amazon.awssdk:cloudformation:2.16.2")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.19.0")
-    testImplementation("io.kotest:kotest-assertions-core:5.6.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.7.2")
 }
