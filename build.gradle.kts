@@ -39,11 +39,13 @@ subprojects {
     }
 
     detekt {
-        source = objects.fileCollection().from(
-            DetektExtension.DEFAULT_SRC_DIR_JAVA,
-            "src/test/java",
-            DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
-            "src/test/kotlin"
+        source.setFrom(
+            objects.fileCollection().from(
+                DetektExtension.DEFAULT_SRC_DIR_JAVA,
+                "src/test/java",
+                DetektExtension.DEFAULT_SRC_DIR_KOTLIN,
+                "src/test/kotlin"
+            )
         )
     }
 }
@@ -61,7 +63,7 @@ tasks.register<JacocoReport>("codeCoverageReport") {
 
     reports {
         xml.required.set(true)
-        xml.outputLocation.set(file("${buildDir}/reports/jacoco/report.xml"))
+        xml.outputLocation.set(layout.buildDirectory.file("reports/jacoco/report.xml"))
         html.required.set(false)
     }
 }

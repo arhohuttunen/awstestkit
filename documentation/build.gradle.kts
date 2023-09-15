@@ -18,6 +18,7 @@ dependencies {
     testImplementation(project(":sns"))
     testImplementation(project(":sqs"))
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.19.0")
     testImplementation("software.amazon.awssdk:cloudformation:2.16.2")
     testImplementation("software.amazon.awssdk:dynamodb:2.16.2")
@@ -29,7 +30,7 @@ dependencies {
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
 val docsVersion = if (snapshot) "snapshot" else rootProject.version
-val docsDir = file("$buildDir/gh-pages-docs")
+val docsDir = layout.buildDirectory.file("gh-pages-docs")
 
 gitPublish {
     repoUri.set("https://github.com/arhohuttunen/awstestkit.git")
@@ -93,7 +94,7 @@ tasks {
         dependsOn(asciidoctor)
         outputs.dir(docsDir)
 
-        from("$buildDir/checksum") {
+        from(layout.buildDirectory.dir("checksum")) {
             include("published-checksum.txt")
         }
         from(asciidoctor.map { it.outputDir }) {
