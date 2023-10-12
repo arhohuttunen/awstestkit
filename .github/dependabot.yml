@@ -3,7 +3,9 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
-      interval: "daily"
-    ignore:
-      - dependency-name: "com.amazonaws:*"
-      - dependency-name: "software.amazon.awssdk:*"
+      interval: "weekly"
+    groups:
+      minor-and-patch-dependencies:
+        update-types:
+          - "minor"
+          - "patch"
