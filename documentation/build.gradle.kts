@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm")
     java
     id("org.asciidoctor.jvm.convert") version "3.3.2"
-    id("org.ajoberstar.git-publish") version "4.2.0"
+    id("org.ajoberstar.git-publish") version "4.2.1"
     id("com.avast.gradle.docker-compose") version "0.17.5"
 }
 
@@ -20,12 +20,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.19.1")
-    testImplementation("software.amazon.awssdk:cloudformation:2.16.2")
-    testImplementation("software.amazon.awssdk:dynamodb:2.16.2")
-    testImplementation("software.amazon.awssdk:s3:2.16.2")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.16.2")
-    testImplementation("software.amazon.awssdk:sns:2.16.2")
-    testImplementation("software.amazon.awssdk:sqs:2.16.2")
+    testImplementation("software.amazon.awssdk:cloudformation:2.21.5")
+    testImplementation("software.amazon.awssdk:dynamodb:2.21.5")
+    testImplementation("software.amazon.awssdk:s3:2.21.5")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.21.5")
+    testImplementation("software.amazon.awssdk:sns:2.21.5")
+    testImplementation("software.amazon.awssdk:sqs:2.21.5")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
