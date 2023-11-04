@@ -14,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 // tag::user_guide[]
 @LocalStackTest
 @S3Test
-@S3Bucket("com.github.awstestkit.bucket")
+@S3Bucket("com-github-awstestkit-bucket")
 @S3Objects(
         @S3Object(
-                bucketName = "com.github.awstestkit.bucket",
+                bucketName = "com-github-awstestkit-bucket",
                 key = "/path/to/file",
                 content = "content"
         )
