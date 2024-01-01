@@ -5,7 +5,7 @@ plugins {
     java
     id("org.asciidoctor.jvm.convert") version "3.3.2"
     id("org.ajoberstar.git-publish") version "4.2.1"
-    id("com.avast.gradle.docker-compose") version "0.17.5"
+    id("com.avast.gradle.docker-compose") version "0.17.6"
 }
 
 dependencies {
@@ -20,12 +20,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.19.3")
-    testImplementation("software.amazon.awssdk:cloudformation:2.21.15")
-    testImplementation("software.amazon.awssdk:dynamodb:2.21.15")
-    testImplementation("software.amazon.awssdk:s3:2.21.15")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.21.15")
-    testImplementation("software.amazon.awssdk:sns:2.21.15")
-    testImplementation("software.amazon.awssdk:sqs:2.21.15")
+    testImplementation("software.amazon.awssdk:cloudformation:2.22.9")
+    testImplementation("software.amazon.awssdk:dynamodb:2.22.9")
+    testImplementation("software.amazon.awssdk:s3:2.22.9")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.22.9")
+    testImplementation("software.amazon.awssdk:sns:2.22.9")
+    testImplementation("software.amazon.awssdk:sqs:2.22.9")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
