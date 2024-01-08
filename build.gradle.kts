@@ -3,7 +3,7 @@ import io.gitlab.arturbosch.detekt.extensions.DetektExtension
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.21" apply false
+    kotlin("jvm") version "1.9.22" apply false
     java
     jacoco
     id("io.gitlab.arturbosch.detekt") version "1.23.4"
