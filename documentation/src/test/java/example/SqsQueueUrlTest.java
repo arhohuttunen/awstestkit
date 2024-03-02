@@ -8,6 +8,7 @@ import com.github.awstestkit.sqs.junit5.SqsTest;
 import org.junit.jupiter.api.Test;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.GetQueueAttributesRequest;
+import software.amazon.awssdk.services.sqs.model.QueueAttributeName;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -20,6 +21,7 @@ class SqsQueueUrlTest {
     void setupQueues(@AwsClient SqsClient client, @QueueUrl("QueueName") String queueUrl) {
         GetQueueAttributesRequest request = GetQueueAttributesRequest.builder()
                 .queueUrl(queueUrl)
+                .attributeNames(QueueAttributeName.ALL)
                 .build();
         assertFalse(client.getQueueAttributes(request).attributes().isEmpty());
     }

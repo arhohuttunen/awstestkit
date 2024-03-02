@@ -32,7 +32,7 @@ class LocalStackExtension : BeforeAllCallback, AfterAllCallback {
         val services = annotation.services.toMutableSet() + scanServiceAnnotations(testClass)
 
         @Suppress("SpreadOperator")
-        container = LocalStackContainer(DockerImageName.parse("localstack/localstack:0.12.17"))
+        container = LocalStackContainer(DockerImageName.parse("localstack/localstack:3.2"))
             .withServices(*services.toTypedArray())
         container.start()
 

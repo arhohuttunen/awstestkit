@@ -6,6 +6,7 @@ import io.kotest.matchers.maps.shouldNotBeEmpty
 import org.junit.jupiter.api.Test
 import software.amazon.awssdk.services.sqs.SqsClient
 import software.amazon.awssdk.services.sqs.model.GetQueueAttributesRequest
+import software.amazon.awssdk.services.sqs.model.QueueAttributeName
 
 @LocalStackTest
 @SqsTest
@@ -15,6 +16,7 @@ class QueueUrlParameterResolverTest {
     fun `resolve queue URL`(@AwsClient client: SqsClient, @QueueUrl("Queue") queueUrl: String) {
         val request = GetQueueAttributesRequest.builder()
             .queueUrl(queueUrl)
+            .attributeNames(QueueAttributeName.ALL)
             .build()
         val result = client.getQueueAttributes(request)
         result.attributes().shouldNotBeEmpty()
