@@ -802,6 +802,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
     <span class="kt">void</span> <span class="nf">setupQueues</span><span class="o">(</span><span class="nd">@AwsClient</span> <span class="nc">SqsClient</span> <span class="n">client</span><span class="o">,</span> <span class="nd">@QueueUrl</span><span class="o">(</span><span class="s">"QueueName"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">queueUrl</span><span class="o">)</span> <span class="o">{</span>
         <span class="nc">GetQueueAttributesRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="nc">GetQueueAttributesRequest</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
                 <span class="o">.</span><span class="na">queueUrl</span><span class="o">(</span><span class="n">queueUrl</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">attributeNames</span><span class="o">(</span><span class="nc">QueueAttributeName</span><span class="o">.</span><span class="na">ALL</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">build</span><span class="o">();</span>
         <span class="n">assertFalse</span><span class="o">(</span><span class="n">client</span><span class="o">.</span><span class="na">getQueueAttributes</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">attributes</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">());</span>
     <span class="o">}</span>
@@ -814,7 +815,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="footer">
 <div id="footer-text">
 Version 0.1.0-SNAPSHOT<br>
-Last updated 2023-11-27 05:19:34 UTC
+Last updated 2024-03-02 12:05:35 UTC
 </div>
 </div>
 <style>
