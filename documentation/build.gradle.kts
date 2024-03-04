@@ -3,7 +3,7 @@ import org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask
 plugins {
     kotlin("jvm")
     java
-    id("org.asciidoctor.jvm.convert") version "3.3.2"
+    id("org.asciidoctor.jvm.convert") version "4.0.2"
     id("org.ajoberstar.git-publish") version "4.2.2"
     id("com.avast.gradle.docker-compose") version "0.17.6"
 }
