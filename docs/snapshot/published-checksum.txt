@@ -19,5 +19,5 @@ c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensi
 ced670ab31d83eb0ce48c426023a8d96  documentation/src/docs/asciidoc/sns.adoc
 d0042570c45cb321b35a0704e78285fa  documentation/src/test/java/example/DynamoDbExtensionTest.java
 d48af4bc7b0b6586660d28d96787ab78  documentation/src/docs/asciidoc/sqs.adoc
+d657025a9fee67ba6bf274b96135ffc6  documentation/build.gradle.kts
 e0c9a25a6693b64aefafdefd9a5462d6  documentation/src/docs/asciidoc/overview.adoc
-f6d53e955cdb3ce3a97e1532807871d9  documentation/build.gradle.kts
