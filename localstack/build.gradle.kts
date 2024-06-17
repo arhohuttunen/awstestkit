@@ -16,8 +16,8 @@ dependencies {
     implementation(project(":sqs"))
     implementation(kotlin("stdlib"))
     implementation("org.junit.jupiter:junit-jupiter:5.10.2")
-    implementation("software.amazon.awssdk:aws-core:2.25.69")
-    implementation("com.amazonaws:aws-java-sdk-core:1.12.739")
+    implementation("software.amazon.awssdk:aws-core:2.26.3")
+    implementation("com.amazonaws:aws-java-sdk-core:1.12.744")
     implementation("org.testcontainers:localstack:1.19.8")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
 }
