@@ -12,8 +12,8 @@
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
 7a0c9cf38c58270961e41935c7ae8088  documentation/src/test/java/example/SqsQueueUrlTest.java
 87d1d21a032855983d7850a218a1ca57  documentation/src/test/java/example/S3ExtensionTest.java
-914d4b8c54459b3f99d1f5643dad95ec  documentation/build.gradle.kts
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
+a4b737aa6ed1459585dc0a88e8055ed0  documentation/build.gradle.kts
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
 c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensionTest.java
