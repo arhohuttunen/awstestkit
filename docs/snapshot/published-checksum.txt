@@ -1,3 +1,4 @@
+0b05c3c90a4fb27bd6d928dd6564320e  documentation/build.gradle.kts
 0ecd5453e7049123570ec7f014d35941  documentation/src/test/java/example/LocalStackExtensionTest.java
 16e34c3d18db59f3821647060d3cdb89  documentation/src/docs/asciidoc/configuration.adoc
 1d83fe2a27eedcffd53f01487ea114e0  documentation/src/test/java/example/SqsExtensionTest.java
@@ -10,7 +11,6 @@
 697b18462eb81e2fe98f4ff8f7eae2b1  documentation/src/docs/asciidoc/s3.adoc
 6f330a3972e95be5206bcb833874b762  documentation/src/test/java/example/CloudFormationExtensionTest.java
 6f6638f0a05a2d36d13acb2cd3f35845  documentation/src/docs/asciidoc/dynamodb.adoc
-6f955c41f5230524092c9a89004858ab  documentation/build.gradle.kts
 7a0c9cf38c58270961e41935c7ae8088  documentation/src/test/java/example/SqsQueueUrlTest.java
 87d1d21a032855983d7850a218a1ca57  documentation/src/test/java/example/S3ExtensionTest.java
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
