@@ -5,10 +5,10 @@ plugins {
 dependencies {
     api(project(":core"))
     implementation(kotlin("stdlib"))
-    implementation("org.junit.jupiter:junit-jupiter:5.11.2")
-    implementation("software.amazon.awssdk:aws-core:2.28.26")
-    implementation("software.amazon.awssdk:cloudformation:2.28.26")
+    implementation("org.junit.jupiter:junit-jupiter:5.11.3")
+    implementation("software.amazon.awssdk:aws-core:2.29.1")
+    implementation("software.amazon.awssdk:cloudformation:2.29.1")
     testImplementation(project(":localstack"))
-    testImplementation("org.testcontainers:localstack:1.20.2")
+    testImplementation("org.testcontainers:localstack:1.20.3")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
 }
