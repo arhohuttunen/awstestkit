@@ -13,7 +13,7 @@
 7a0c9cf38c58270961e41935c7ae8088  documentation/src/test/java/example/SqsQueueUrlTest.java
 87d1d21a032855983d7850a218a1ca57  documentation/src/test/java/example/S3ExtensionTest.java
 9df412329a30f77fa32d2c4ca14298bd  documentation/src/docs/asciidoc/cloudformation.adoc
-9fd491b0b2e180fe0f5fb8d3730ca1bf  documentation/build.gradle.kts
+a4f67856c379e0cb86d2869a2fe7cfbd  documentation/build.gradle.kts
 ab6805c2936fc951c593fa004c63ff64  documentation/src/test/resources/template.yml
 bb520c5e79393bbcd8df05e6c51882ce  documentation/src/test/java/example/SnsTopicArnTest.java
 c1221e975ac68d9cd8987c64cefae5cd  documentation/src/test/java/example/SnsExtensionTest.java
