@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   localstack:
-    image: localstack/localstack:3.2
+    image: localstack/localstack:4.0.3
     ports:
       - '4566:4566'   # LocalStack Edge
     environment:
