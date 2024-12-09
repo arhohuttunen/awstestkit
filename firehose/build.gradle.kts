@@ -8,6 +8,7 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.11.3")
     implementation("software.amazon.awssdk:aws-core:2.29.29")
     implementation("software.amazon.awssdk:firehose:2.29.29")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.20.4")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")

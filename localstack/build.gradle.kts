@@ -19,6 +19,7 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.29.29")
     implementation("com.amazonaws:aws-java-sdk-core:1.12.779")
     implementation("org.testcontainers:localstack:1.20.4")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
     testImplementation("ch.qos.logback:logback-classic:1.5.12")
 }
