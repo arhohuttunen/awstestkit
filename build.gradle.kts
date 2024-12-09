@@ -1,5 +1,6 @@
 import io.gitlab.arturbosch.detekt.DetektPlugin
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -26,7 +27,9 @@ subprojects {
 
     tasks {
         withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = "1.8"
+            compilerOptions {
+                jvmTarget.set(JvmTarget.JVM_1_8)
+            }
         }
         withType<JavaCompile> {
             sourceCompatibility = "1.8"
