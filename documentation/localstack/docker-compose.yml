@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   localstack:
     image: localstack/localstack:4.0.3
