@@ -30,7 +30,7 @@ dependencies {
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
 val docsVersion = if (snapshot) "snapshot" else rootProject.version
-val docsDir = file("$buildDir/gh-pages-docs")
+val docsDir = file("${layout.buildDirectory}/gh-pages-docs")
 
 gitPublish {
     repoUri.set("https://github.com/arhohuttunen/awstestkit.git")
@@ -94,7 +94,7 @@ tasks {
         dependsOn(asciidoctor)
         outputs.dir(docsDir)
 
-        from("$buildDir/checksum") {
+        from("${layout.buildDirectory}/checksum") {
             include("published-checksum.txt")
         }
         from(asciidoctor.map { it.outputDir }) {
