@@ -9,4 +9,5 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.29.29")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
     testImplementation("org.junit.platform:junit-platform-testkit:1.11.3")
+    testImplementation("ch.qos.logback:logback-classic:1.5.12")
 }
