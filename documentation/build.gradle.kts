@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm")
     java
     id("org.asciidoctor.jvm.convert") version "4.0.3"
-    id("org.ajoberstar.git-publish") version "5.0.0"
+    id("org.ajoberstar.git-publish") version "5.1.0"
     id("com.avast.gradle.docker-compose") version "0.17.11"
 }
 
@@ -36,6 +36,8 @@ val docsDir = file("${layout.buildDirectory}/gh-pages-docs")
 gitPublish {
     repoUri.set("https://github.com/arhohuttunen/awstestkit.git")
     branch.set("gh-pages")
+    username.set("arhohuttunen")
+    password.set(System.getenv("GITHUB_TOKEN"))
     sign.set(false)
 
     contents {
