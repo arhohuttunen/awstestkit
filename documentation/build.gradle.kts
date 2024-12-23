@@ -3,7 +3,7 @@ import org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask
 plugins {
     kotlin("jvm")
     java
-    id("org.asciidoctor.jvm.convert") version "4.0.3"
+    id("org.asciidoctor.jvm.convert") version "4.0.4"
     id("org.ajoberstar.git-publish") version "5.1.0"
     id("com.avast.gradle.docker-compose") version "0.17.12"
 }
@@ -17,16 +17,16 @@ dependencies {
     testImplementation(project(":secretsmanager"))
     testImplementation(project(":sns"))
     testImplementation(project(":sqs"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.11.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.20.4")
-    testImplementation("software.amazon.awssdk:cloudformation:2.29.34")
-    testImplementation("software.amazon.awssdk:dynamodb:2.29.34")
-    testImplementation("software.amazon.awssdk:s3:2.29.34")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.29.34")
-    testImplementation("software.amazon.awssdk:sns:2.29.34")
-    testImplementation("software.amazon.awssdk:sqs:2.29.34")
-    testImplementation("ch.qos.logback:logback-classic:1.5.12")
+    testImplementation("software.amazon.awssdk:cloudformation:2.29.39")
+    testImplementation("software.amazon.awssdk:dynamodb:2.29.39")
+    testImplementation("software.amazon.awssdk:s3:2.29.39")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.29.39")
+    testImplementation("software.amazon.awssdk:sns:2.29.39")
+    testImplementation("software.amazon.awssdk:sqs:2.29.39")
+    testImplementation("ch.qos.logback:logback-classic:1.5.15")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
