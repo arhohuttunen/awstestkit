@@ -20,12 +20,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.20.4")
-    testImplementation("software.amazon.awssdk:cloudformation:2.29.39")
-    testImplementation("software.amazon.awssdk:dynamodb:2.29.39")
-    testImplementation("software.amazon.awssdk:s3:2.29.39")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.29.39")
-    testImplementation("software.amazon.awssdk:sns:2.29.39")
-    testImplementation("software.amazon.awssdk:sqs:2.29.39")
+    testImplementation("software.amazon.awssdk:cloudformation:2.29.43")
+    testImplementation("software.amazon.awssdk:dynamodb:2.29.43")
+    testImplementation("software.amazon.awssdk:s3:2.29.43")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.29.43")
+    testImplementation("software.amazon.awssdk:sns:2.29.43")
+    testImplementation("software.amazon.awssdk:sqs:2.29.43")
     testImplementation("ch.qos.logback:logback-classic:1.5.15")
 }
 
