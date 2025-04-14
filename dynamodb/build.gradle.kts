@@ -5,9 +5,9 @@ plugins {
 dependencies {
     api(project(":core"))
     implementation(kotlin("stdlib"))
-    implementation("org.junit.jupiter:junit-jupiter:5.12.1")
-    implementation("software.amazon.awssdk:aws-core:2.31.16")
-    implementation("software.amazon.awssdk:dynamodb:2.31.16")
+    implementation("org.junit.jupiter:junit-jupiter:5.12.2")
+    implementation("software.amazon.awssdk:aws-core:2.31.21")
+    implementation("software.amazon.awssdk:dynamodb:2.31.21")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.20.6")
