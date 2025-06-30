@@ -5,12 +5,12 @@ plugins {
 dependencies {
     api(project(":core"))
     implementation(kotlin("stdlib"))
-    implementation("org.junit.jupiter:junit-jupiter:5.13.1")
-    implementation("software.amazon.awssdk:aws-core:2.31.68")
-    implementation("software.amazon.awssdk:cloudformation:2.31.68")
+    implementation("org.junit.jupiter:junit-jupiter:5.13.2")
+    implementation("software.amazon.awssdk:aws-core:2.31.73")
+    implementation("software.amazon.awssdk:cloudformation:2.31.73")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(project(":localstack"))
-    testImplementation("org.testcontainers:localstack:1.21.2")
+    testImplementation("org.testcontainers:localstack:1.21.3")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")
     testImplementation("ch.qos.logback:logback-classic:1.5.18")
 }
