@@ -3,8 +3,8 @@ import org.asciidoctor.gradle.jvm.AbstractAsciidoctorTask
 plugins {
     kotlin("jvm")
     java
-    id("org.asciidoctor.jvm.convert") version "4.0.4"
-    id("org.ajoberstar.git-publish") version "5.1.1"
+    id("org.asciidoctor.jvm.convert") version "4.0.5"
+    id("org.ajoberstar.git-publish") version "5.1.2"
     id("com.avast.gradle.docker-compose") version "0.17.12"
 }
 
@@ -20,12 +20,12 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.21.3")
-    testImplementation("software.amazon.awssdk:cloudformation:2.32.29")
-    testImplementation("software.amazon.awssdk:dynamodb:2.32.29")
-    testImplementation("software.amazon.awssdk:s3:2.32.29")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.32.29")
-    testImplementation("software.amazon.awssdk:sns:2.32.29")
-    testImplementation("software.amazon.awssdk:sqs:2.32.29")
+    testImplementation("software.amazon.awssdk:cloudformation:2.33.0")
+    testImplementation("software.amazon.awssdk:dynamodb:2.33.0")
+    testImplementation("software.amazon.awssdk:s3:2.33.0")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.33.0")
+    testImplementation("software.amazon.awssdk:sns:2.33.0")
+    testImplementation("software.amazon.awssdk:sqs:2.33.0")
     testImplementation("ch.qos.logback:logback-classic:1.5.18")
 }
 
