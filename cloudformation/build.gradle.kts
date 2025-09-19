@@ -11,6 +11,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.21.3")
-    testImplementation("io.kotest:kotest-assertions-core:5.9.1")
+    testImplementation("io.kotest:kotest-assertions-core:6.0.3")
     testImplementation("ch.qos.logback:logback-classic:1.5.18")
 }
