@@ -16,7 +16,7 @@ dependencies {
     implementation(project(":sqs"))
     implementation(kotlin("stdlib"))
     implementation("org.junit.jupiter:junit-jupiter:5.13.4")
-    implementation("software.amazon.awssdk:aws-core:2.34.0")
+    implementation("software.amazon.awssdk:aws-core:2.34.5")
     implementation("com.amazonaws:aws-java-sdk-core:1.12.791")
     implementation("org.testcontainers:localstack:1.21.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
