@@ -12,5 +12,5 @@ dependencies {
     testImplementation(project(":localstack"))
     testImplementation("org.testcontainers:localstack:1.21.3")
     testImplementation("io.kotest:kotest-assertions-core:6.0.7")
-    testImplementation("ch.qos.logback:logback-classic:1.5.18")
+    testImplementation("ch.qos.logback:logback-classic:1.5.21")
 }

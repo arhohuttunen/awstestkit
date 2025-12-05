@@ -26,7 +26,7 @@ dependencies {
     testImplementation("software.amazon.awssdk:secretsmanager:2.36.2")
     testImplementation("software.amazon.awssdk:sns:2.36.2")
     testImplementation("software.amazon.awssdk:sqs:2.36.2")
-    testImplementation("ch.qos.logback:logback-classic:1.5.18")
+    testImplementation("ch.qos.logback:logback-classic:1.5.21")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
