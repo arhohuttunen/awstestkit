@@ -5,7 +5,7 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    implementation("org.junit.jupiter:junit-jupiter:5.13.4")
+    implementation("org.junit.jupiter:junit-jupiter:6.0.1")
     implementation("software.amazon.awssdk:aws-core:2.36.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.kotest:kotest-assertions-core:5.9.1")

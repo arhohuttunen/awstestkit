@@ -22,7 +22,7 @@ fun runTest(testClass: KClass<*>, testMethod: KFunction<*>): EngineExecutionResu
     return EngineTestKit
         .engine("junit-jupiter")
         .configurationParameter("testkit.testcase.enabled", "true")
-        .selectors(selectMethod(testClass.java, testMethod.javaMethod))
+        .selectors(selectMethod(testClass.java, testMethod.javaMethod!!))
         .execute()
 }
 

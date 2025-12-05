@@ -17,7 +17,7 @@ dependencies {
     testImplementation(project(":secretsmanager"))
     testImplementation(project(":sns"))
     testImplementation(project(":sqs"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.4")
+    testImplementation("org.junit.jupiter:junit-jupiter:6.0.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.21.3")
     testImplementation("software.amazon.awssdk:cloudformation:2.36.2")
