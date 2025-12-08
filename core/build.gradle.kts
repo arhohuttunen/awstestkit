@@ -9,6 +9,6 @@ dependencies {
     implementation("software.amazon.awssdk:aws-core:2.36.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.kotest:kotest-assertions-core:6.0.7")
-    testImplementation("org.junit.platform:junit-platform-testkit:1.13.4")
+    testImplementation("org.junit.platform:junit-platform-testkit:6.0.1")
     testImplementation("ch.qos.logback:logback-classic:1.5.21")
 }
