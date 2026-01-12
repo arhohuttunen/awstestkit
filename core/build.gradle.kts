@@ -5,10 +5,10 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(kotlin("reflect"))
-    implementation("org.junit.jupiter:junit-jupiter:6.0.1")
-    implementation("software.amazon.awssdk:aws-core:2.40.13")
+    implementation("org.junit.jupiter:junit-jupiter:6.0.2")
+    implementation("software.amazon.awssdk:aws-core:2.41.5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.kotest:kotest-assertions-core:6.0.7")
-    testImplementation("org.junit.platform:junit-platform-testkit:6.0.1")
-    testImplementation("ch.qos.logback:logback-classic:1.5.23")
+    testImplementation("org.junit.platform:junit-platform-testkit:6.0.2")
+    testImplementation("ch.qos.logback:logback-classic:1.5.24")
 }
