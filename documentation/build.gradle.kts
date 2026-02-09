@@ -5,7 +5,7 @@ plugins {
     java
     id("org.asciidoctor.jvm.convert") version "4.0.5"
     id("org.ajoberstar.git-publish") version "5.1.3"
-    id("com.avast.gradle.docker-compose") version "0.17.20"
+    id("com.avast.gradle.docker-compose") version "0.17.21"
 }
 
 dependencies {
@@ -20,13 +20,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:6.0.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.testcontainers:localstack:1.21.4")
-    testImplementation("software.amazon.awssdk:cloudformation:2.41.14")
-    testImplementation("software.amazon.awssdk:dynamodb:2.41.14")
-    testImplementation("software.amazon.awssdk:s3:2.41.14")
-    testImplementation("software.amazon.awssdk:secretsmanager:2.41.14")
-    testImplementation("software.amazon.awssdk:sns:2.41.14")
-    testImplementation("software.amazon.awssdk:sqs:2.41.14")
-    testImplementation("ch.qos.logback:logback-classic:1.5.26")
+    testImplementation("software.amazon.awssdk:cloudformation:2.41.24")
+    testImplementation("software.amazon.awssdk:dynamodb:2.41.24")
+    testImplementation("software.amazon.awssdk:s3:2.41.24")
+    testImplementation("software.amazon.awssdk:secretsmanager:2.41.24")
+    testImplementation("software.amazon.awssdk:sns:2.41.24")
+    testImplementation("software.amazon.awssdk:sqs:2.41.24")
+    testImplementation("ch.qos.logback:logback-classic:1.5.28")
 }
 
 val snapshot = rootProject.version.toString().contains("SNAPSHOT")
