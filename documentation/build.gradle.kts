@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm")
     java
     id("org.asciidoctor.jvm.convert") version "4.0.5"
-    id("org.ajoberstar.git-publish") version "5.1.3"
+    id("org.ajoberstar.git-publish") version "6.0.0"
     id("com.avast.gradle.docker-compose") version "0.17.21"
 }
 
